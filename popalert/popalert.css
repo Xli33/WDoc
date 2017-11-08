@@ -1,0 +1,73 @@
+
+#pop-window{
+	position: fixed;
+	top: 0;
+}
+#pop-window.locker{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.35);
+}
+#pop-container{
+	position: fixed;
+  left: 50%;
+  top: 50%;
+  background: antiquewhite;
+	max-width: 768px;
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+							0 1px 20px 0 rgba(0,0,0,0.12),
+							0 3px 20px -2px rgba(0,0,0,0.2);
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+							0 1px 20px 0 rgba(0,0,0,0.12),
+							0 3px 20px -2px rgba(0,0,0,0.2);
+}
+#pop-container>.pop-header{
+	background: cornflowerblue;
+	font-size: 2rem;
+  position: relative;
+  -webkit-box-shadow: 0 3px 2px rgba(0,0,0,.16);
+  box-shadow: 0 3px 2px rgba(0,0,0,.16);
+}
+#pop-container>#pop-content{
+	padding: .5rem 1rem;
+  font-size: 15px;
+  max-height: 550px;
+  overflow: auto;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+.pop-header>#pop-window-title{
+	font-size: 2rem;
+  margin: 0;
+  margin-right: 2em;
+  padding: 1rem;
+}
+.pop-header>.fa{
+	font-size: 1em;
+	position: absolute;
+	right: 1rem;
+	top: 50%;
+	margin-top: -.5em;
+}
+.pop-footer {
+  padding: 1rem;
+}
+.pop-footer>button {
+  margin-left: 10px;
+  font-size: 1.3rem;
+  outline: none;
+  padding: 2px 12px;
+  border-color: cornflowerblue;
+  -webkit-transition: background .2s linear,color .2s linear;
+  -moz-transition: background .2s linear,color .2s linear;
+  transition: background .2s linear,color .2s linear;
+}
+.pop-footer>button:hover {
+  background: cornflowerblue;
+}
+.pop-footer>button:hover:focus {
+  background: aliceblue;
+}
+.pop-footer>button:focus {
+  background: aliceblue;
+}

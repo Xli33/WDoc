@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="zh-cn" class="h">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,maximum-scale=1">
+  <title>web-universal-componets</title>
+  <style>
+   *{
+    box-sizing: border-box;
+   }
+    html{
+    	font-size: 12px;
+    }
+    body{
+      margin: 0;
+      padding: 0; 
+      font-size: 62.5%;
+      font-family: sans-serif;
+    }
+    a{
+    	color: salmon;
+    	text-decoration: none;
+    }
+    .h{
+      overflow: hidden;
+      height: 100%;
+      background: linear-gradient(transparent 50%,rgba(253, 255, 95, .7));
+    }
+    .none{
+      display: none;
+    }
+    .play-anim:checked ~ #choice{
+    	position: absolute;
+    	width: 0;
+    	height: 0;
+    	opacity: 0;
+			visibility: hidden;
+			z-index: -123;
+    }
+    .play-anim:checked ~ .ball{
+    	visibility: visible;
+			animation-play-state: running;
+    }
+    .play-anim:checked ~ .ball>h1{
+			animation-play-state: running;
+    }
+    .play-anim:checked ~ .ball>.tball{
+			animation-play-state: running;
+    }
+    .play-anim:checked ~ .ball>.shadow{
+			animation-play-state: running;
+    }
+    .play-anim:checked ~ #doc{
+    	opacity: 1;
+    	visibility: visible;
+    }
+    #show-dev:checked ~ #doc>#for-dev{
+    	position: relative;
+      opacity: 1;
+      visibility: visible;
+      width: auto;
+      height: auto;
+      z-index: initial;
+      transition: all .1s .5s linear;
+    }
+    #show-test:checked ~ #doc>#for-test{
+    	position: relative;
+			opacity: 1;
+			visibility: visible;
+			width: auto;
+			height: auto;
+      z-index: initial;
+      transition: all .1s .5s linear;
+    }
+    #doc{
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s ease-out 0s,visibility .2s ease-out 0s;    
+    }
+    #doc>article{
+      background-color: #fff;
+    	position: absolute;
+    	opacity: 0;
+    	visibility: hidden;
+    	z-index: -1234;
+    }
+    article{
+    	width: 0;
+    	height: 0;
+      max-width: 820px;      
+      padding: 1rem;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    header{
+      width: 100%;
+      position: fixed;
+      top: 0;
+      background: lightcoral;
+      padding: 0 1.4rem;
+      margin-bottom: 3.2rem;
+    }
+    .header{
+    	color: #fff;
+    	font-size: 2rem;
+    	-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+							0 1px 5px 0 rgba(0,0,0,0.12),
+							0 3px 1px -2px rgba(0,0,0,0.2);
+    	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+							0 1px 5px 0 rgba(0,0,0,0.12),
+							0 3px 1px -2px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    header h1{
+      font-size: 2.4rem;
+      color: #fff;
+      font-weight: 300;
+      text-indent: 3rem;
+    }
+    .ball{
+      position: fixed;
+      left: 50%;
+      margin-left: -50px;
+      top: 50%;
+      margin-top: -33.5px;
+      visibility: hidden;
+      animation: hides .2s 2s forwards;
+      animation-play-state: paused;
+    }
+    .ball>h1{
+      margin-top: 150px;
+      font-size: 1.3rem;
+      font-weight: 500;
+			animation: dis 2s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+      animation-play-state: paused;
+    }
+    .ball>.tball{
+      width: 70px;
+      height: 70px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -200px;
+      margin-left: -35px;
+      border-radius: 50%;
+      background: coral;
+      animation: bounce 2s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+      animation-play-state: paused;
+    }
+    .ball>.shadow{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: 30px;
+      margin-left: -35px;
+      width: 70px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.25);
+      animation: abounce 2s ease-in-out forwards;
+      animation-play-state: paused;
+    }
+    #choice{
+      position: relative;
+      top: 320px;
+      text-align: center;
+    }
+    #choice label{
+    	display: inline-block;
+      border: 1px solid coral;
+      outline: none;
+      padding: 1rem 4rem;
+      margin: 0 1rem;
+      opacity: 0;
+      font-size: 1.5rem;
+      transition: background .2s ease,color .2s ease;
+      animation: in .8s ease forwards;
+      -moz-box-shadow: 0 2px 2px rgba(0,0,0,.15);
+      box-shadow: 0 2px 2px rgba(0,0,0,.15);
+      -webkit-tap-highlight-color: transparent;
+    }
+    #dev.blur{
+      background: transparent;
+      color: #000;
+    }
+    #dev{
+      background: lightcoral;
+      transform: translate(-12rem,6rem);
+      color: #fff;
+    }
+    #test{
+      background: transparent;
+      transform: translate(12rem,6rem);
+    }
+    #category{
+    	position: fixed;
+    	left: 4rem;
+      top: 10rem;
+    }
+    #category>dl{
+    	background: aquamarine;
+    	padding: 1rem 0;
+    	-webkit-box-shadow: 0 4px 12px rgba(0,0,0,.15);
+			box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+    #category>dl>dt{
+    	font-size: 1.5rem;    	
+    }
+    #category>dl a{
+      color: #333;
+			display: block;
+			padding: 15px 2rem;
+			transition: background .2s ease;
+    }
+    #category>dl a:hover{
+			/*color: #fff;*/
+			background: #fff;
+    }
+    #category>dl>dd {
+      margin-left: 0;
+    }
+    #category>dl>dd>ul {
+      margin: 0;
+    }
+    #category>dl>dd {
+      height: 0;
+      overflow: hidden;
+      padding-left: 0;
+      font-size: 1.3rem;
+      transition: height .5s cubic-bezier(0.39, 0.58, 0.59, 1.01);
+    }/* 
+    #category>dl>dt.open+dd{
+      height: auto;
+    } */
+    #category>dl>dd>ul a{
+      padding: 10px 2rem;
+    }
+    article section{
+      padding-top: 9rem;
+    }
+    section h2 {
+	    font-size: 1.6rem;
+	    font-weight: 400;
+		}
+		section h3 {
+		  font-size: 1.4rem;
+		  font-weight: 400;
+		}
+    .info{
+      position: relative;
+    }
+		.info>p {
+		  font-size: 1.3rem;
+		}
+    .info>.quote{
+      background: antiquewhite;
+      padding: 8px;
+    }
+    .info>code {
+      display: block;
+      background: #e4e2e2;
+      padding: 8px;
+      overflow: auto;
+    }
+    .info>a{
+      display: inline-block;
+      font-size: 0;
+    }
+    .info>a>img{
+      width: 100%;
+    }
+    .info>code>pre{
+      color: #0a2b79;
+      font-size: 1.3rem;
+      margin: 8px 0;
+    }
+    code>p{
+      font-size: 14px;
+      color: coral;
+    }
+    pre>.comments{
+      color: #333;
+      font-style: italic;
+      font-weight: 600;
+      -webkit-font-smoothing: antialiased;
+    }
+    ol.usage {
+      font-size: 1.3rem;
+      margin-bottom: 6rem;
+    }
+    .usage>li{
+      margin: 1rem 0;
+    }
+    .tip{
+      font-size: 1.6rem;
+      color: salmon;
+    }
+    img.ontheway{
+      width: 100%;
+      max-height: 500px;
+    }
+    .info>h6{
+      position: absolute;
+      font-size: 32px;
+      font-weight: 400;
+      color: #ffffff;
+      margin: 0;
+      top: 70px;
+      left: 70px;
+      text-shadow: 4px 4px 5px rgba(0,0,0,.55);
+    }
+    .showAPI{
+      margin-bottom: 6rem;
+    }
+    @keyframes show{
+    	to{
+    		opacity: 1;
+    		visibility: visible;
+    	}
+    }
+    @keyframes in{
+      to{
+        opacity: 1;
+        transform: translate(0);
+      }
+    }
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+      section ul:first-of-type{
+        margin-right: 5rem;
+      } 
+    }
+    @keyframes bounce{
+      25%{
+        transform: translateY(160px);
+      }
+      50%{
+        transform: translateY(0px);
+      }
+      75%{
+        transform: translateY(160px);
+        opacity: 1;
+      } 
+      100%{
+        transform: translateY(0px) scale3d(70,70,100);
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    @keyframes abounce{
+      0%{
+        transform: scale(.2);
+      }
+      25%{
+        transform: scale(1);
+      }
+      50%{
+        transform: scale(.2);
+      }
+      75%{
+        transform: scale(1);
+        opacity: 1;
+      } 
+      100%{
+        transform: scale(.2); 
+        opacity: 0;
+        visibility: hidden; 
+      }
+    }
+    @keyframes dis{
+    	75%{
+    		opacity: .75;
+    	}
+    	to{
+    		opacity: 0;
+    		visibility: hidden;
+    	}
+    }
+    @keyframes hides{
+      to{
+        visibility: hidden;
+        z-index: -1111;
+      }
+    }
+    @media only screen and (min-width: 769px){
+      #dev:hover{
+        color: #000;
+        background: transparent;
+      }
+      #dev:hover ~ #test{
+        color: #fff;
+        background: lightcoral;
+      }
+      #test:hover{
+        color: #fff;
+        background: lightcoral;
+      }
+      #dev.devhover{
+        color: #000;
+        background: transparent;
+      }
+    }
+    @media only screen and (max-width: 768px){
+      .ball{
+        margin-top: 40%;
+        left: 52%;
+      }
+      article{
+        left: 0;
+      }
+      @keyframes hides{
+        to{
+          transform: translateY(-900px);
+          visibility: hidden;
+        }
+      } 
+    }
+    @media only screen and (max-width: 600px){
+      #choice{
+        margin-top: -100px;
+      }
+      #choice button{
+        width: 75%;
+      }
+      #choice button:first-child{
+        margin-bottom: 3rem;
+      }
+    }
+    
+  </style> 
+<!--[if lte IE 9]>
+<style>
+  #unie{
+    visibility:hidden;
+    display: none;
+  }
+  h1#ie{
+    font-size: 18px;
+    text-align: center;
+  }
+</style>
+<![endif]--> 
+<script async>
+  console.log('%c 想\n看\n 源\n代\n 码\n看吧\n( • ̀ω•́ )✧','color: lightcoral;font-size: 4rem');
+  // /android|mobile|windowsphone|iphone/i.test(navigator.userAgent) ? window.isPc = undefined : window.isPc = true;
+</script>
+
+</head>
+<body>
+  <!--[if lte IE 9]>
+      <h1 id="ie">OMG!!(꒪Д꒪)ノIE用的不心累？？！！！！</h1>
+  <![endif]-->
+  <input type="checkbox" id="show-dev" class="play-anim none">
+  <input type="checkbox" id="show-test" class="play-anim none">
+  <div id="choice">
+    <label for="show-dev" id="dev">我是研发</label>
+    <label for="show-test" id="test">我是测试</label>
+  </div>
+  <!-- <div class="ball">
+    <div class="tball"></div>
+    <div class="shadow"></div>
+    <h1>loading...</h1> 
+  </div>-->
+  <div id="doc">
+  	<header class="header"><h1>WEB通用组件</h1></header>
+  	<section id="category">
+  		<dl>
+    		<dt><a href="#date-picker">通用日期组件</a></dt>
+        <dd>
+          <ul>
+            <li><a href="#date-time">时间选择</a></li>
+            <li><a href="#date-day">日期选择</a></li>
+            <li><a href="#date-month">月份选择</a></li>
+            <li><a href="#date-quarter">季度选择</a></li>
+            <li><a href="#date-year">年份选择</a></li>
+            <li><a href="#date-week">周选择</a></li>
+            <li><a href="#date-time-range">时间段选择</a></li>
+            <li><a href="#date-month-range">月范围选择</a></li>
+          </ul>
+        </dd>
+        <dt><a href="#helper">通用帮助组件</a></dt>
+        <dd>
+          <ul>
+            <li><a href="#help-select">下拉帮助</a></li>
+            <li><a href="#help-window">弹窗帮助</a></li>
+            <li><a href="#help-definite">自定义帮助</a></li>
+          </ul>
+        </dd>
+    		<dt><a href="#pop-window">通用弹窗组件</a></dt>
+    		<dt><a href="#data-table">通用数据表格组件</a></dt>
+    		<dt><a href="#layout-box">通用容器（布局）组件</a></dt>
+    		<dt><a href="#down-list-help">通用下拉帮助组件</a></dt>
+    		
+    	</dl>
+  	</section>
+    <!-- 开发人员查看 -->
+    <article id="for-dev">
+      <!-- 日期组件start -->
+      <section id="date-picker">
+        <h2>日期组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h3>基本介绍：</h3>
+            <p>本系列组件包含时、日、周、月、季、年及时间段等独立选择组件，具有各自的时间选择功能</p>
+            <p class="tip">注：单击图片跳转到对应demo页面</p>
+          </li>
+          <li class="info">
+            <h3 id="date-time">时间选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>显示格式示例：2017-10-10 10:10</li>
+              <li>可能的输入参数：默认选择时间（默认为当天 00：00）</li>
+              <li>可能的输出参数：所选时间</li>
+              <li>选择时间自动关闭控件</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+            <li class="info showAPI">
+              <h3>API使用</h3>
+              <p class="quote">如下代码示例：</p>
+              <code>
+                <pre>$('.box').pickDate({</pre>
+                <pre>  type: 'time',<span class="comments">//控件类型：时</span></pre>
+                <pre>  id: 'ctime',<span class="comments">//指定input的id</span></pre>
+                <pre>  minuteStep: 1,<span class="comments">//分选择界面每个选项间的时间间隔，单位为 “分”，默认“5”</span></pre>
+                <pre>  fill: true,<span class="comments">//是否启用自动填充</span></pre>
+                <pre>  readonly: true,<span class="comments">//是否让输入框只读</span></pre>
+                <pre>  startDate: new Date(),<span class="comments">//开始时间</span></pre>
+                <pre>  todayBtn: true,<span class="comments">//是否显示底部按钮</span></pre>
+                <pre>  changeDate: function(){<span class="comments">//改变时间回调</span></pre>
+                <pre>    $showbox.html('已选时间：'+$('#ctime').val())</pre>
+                <pre>  }</pre>
+                <pre>})</pre>
+              </code>
+            </li>
+          </li>
+          <li class="info">
+            <h3 id="date-day">日期选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex2.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>显示格式示例：2017-10-10</li>
+              <li>可能的输入参数：默认选择时间（默认为当天）</li>
+              <li>可能的输出参数：所选时间</li>
+              <li>选择时间自动关闭控件</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info showAPI">
+            <h3>API使用</h3>
+            <p class="quote">如下代码示例：</p>
+            <code>
+              <pre>$('.box').pickDate({</pre>
+              <pre>  type: 'day',<span class="comments">//控件类型：日</span></pre>
+              <pre>  id: 'cday',<span class="comments">//指定input的id</span></pre>
+              <pre>  fill: true,<span class="comments">//是否启用自动填充</span></pre>
+              <pre>  readonly: true,<span class="comments">//是否让输入框只读</span></pre>
+              <pre>  startDate: new Date(),<span class="comments">//开始时间</span></pre>
+              <pre>  todayBtn: true,<span class="comments">//是否显示底部按钮</span></pre>
+              <pre>  changeDate: function(){<span class="comments">//改变时间回调</span></pre>
+              <pre>    $showbox.html('已选时间：'+$('#cday').val())</pre>
+              <pre>  }</pre>
+              <pre>})</pre>
+            </code>
+          </li>
+          <li class="info">
+            <h3 id="date-month">月份选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex3.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>显示格式示例：2017-10</li>
+              <li>可能的输入参数：默认选择时间（默认为当月）</li>
+              <li>可能的输出参数：所选时间</li>
+              <li>选择时间自动关闭控件</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info showAPI">
+            <h3>API使用</h3>
+            <p class="quote">如下代码示例：</p>
+            <code>
+              <pre>$('.box').pickDate({</pre>
+              <pre>  type: 'month',<span class="comments">//控件类型：月</span></pre>
+              <pre>  id: 'month',<span class="comments">//指定input的id</span></pre>
+              <pre>  fill: true,<span class="comments">//是否启用自动填充</span></pre>
+              <pre>  readonly: true,<span class="comments">//是否让输入框只读</span></pre>
+              <pre>  startDate: new Date(),<span class="comments">//开始时间</span></pre>
+              <pre>  todayBtn: true,<span class="comments">//是否显示底部按钮</span></pre>
+              <pre>  changeDate: function(){<span class="comments">//改变时间回调</span></pre>
+              <pre>    $showbox.html('已选时间：'+$('#month').val())</pre>
+              <pre>  }</pre>
+              <pre>})</pre>
+            </code>
+          </li>
+          <li class="info">
+            <h3 id="date-quarter">季度选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex4.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>后台所需格式示例：201701 （示例页面显示结果为 “简格式”）</li>
+              <li>可能的输入参数：默认选择时间（默认为当前季度）</li>
+              <li>可能的输出参数：所选季度</li>
+              <li>选择季度自动关闭控件</li>
+              <li>一页标签显示四季度</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info showAPI">
+            <h3>API使用</h3>
+            <p class="quote">( 注：不同于其他控件，startDate格式应为具体年份 )  如下代码示例：</p>
+            <code>
+              <pre>$('.box').pickDate({</pre>
+              <pre>  type: 'quarter',<span class="comments">//控件类型：季</span></pre>
+              <pre>  id: 'quarter',<span class="comments">//指定input的id</span></pre>
+              <pre>  fill: true,<span class="comments">//是否启用自动填充</span></pre>
+              <pre>  readonly: true,<span class="comments">//是否让输入框只读</span></pre>
+              <pre>  startDate: 2011,<span class="comments">//开始时间</span></pre>
+              <pre>  todayBtn: true,<span class="comments">//是否显示底部按钮</span></pre>
+              <pre>  changeDate: function(){<span class="comments">//改变时间回调</span></pre>
+              <pre>    $showbox.html('已选时间：'+$('#quarter').val())</pre>
+              <pre>  }</pre>
+              <pre>})</pre>
+            </code>
+          </li>
+          <li class="info">
+            <h3 id="date-year">年份选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex5.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>显示格式示例：2017</li>
+              <li>可能的输入参数：默认选择时间（默认为当年）</li>
+              <li>可能的输出参数：所选年份</li>
+              <li>选择年份自动关闭控件</li>
+              <li>一页标签显示十年（2010-2019</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info showAPI">
+            <h3>API使用</h3>
+            <p class="quote">如下代码示例：</p>
+            <code>
+              <pre>$('.box').pickDate({</pre>
+              <pre>  type: 'day',<span class="comments">//控件类型：日</span></pre>
+              <pre>  id: 'cday',<span class="comments">//指定input的id</span></pre>
+              <pre>  fill: true,<span class="comments">//是否启用自动填充</span></pre>
+              <pre>  todayBtn: true,<span class="comments">//是否显示底部按钮</span></pre>
+              <pre>  changeDate: function(){<span class="comments">//改变时间回调</span></pre>
+              <pre>    $showbox.html('已选时间：'+$('#cday').val())</pre>
+              <pre>  }</pre>
+              <pre>})</pre>
+            </code>
+          </li>
+          <li class="info">
+            <h3 id="date-week">周选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex6.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>后台所需格式示例：2017-45 （示例页面显示结果为 “简格式”）</li>
+              <li>可能的输入参数：默认选择时间（默认为当前周）</li>
+              <li>可能的输出参数：所选周</li>
+              <li>选择周自动关闭控件</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info showAPI">
+            <h3>API使用</h3>
+            <p class="quote">如下代码示例：</p>
+            <code>
+              <pre>$('.box').pickDate({</pre>
+              <pre>  type: 'week',<span class="comments">//控件类型：日</span></pre>
+              <pre>  id: 'week',<span class="comments">//指定input的id</span></pre>
+              <pre>  fill: true,<span class="comments">//是否启用自动填充</span></pre>
+              <pre>  weekChosen: function(startweekdate,endweekdate,sv,input){<span class="comments">//改变时间回调</span></pre>
+              <pre>    $showbox.html('您选择了 '+input.val()+'----简格式：'+sv+'<br>'+'开始日期是：'+startweekdate+'<br>'+'结束日期是：'+endweekdate);</pre>
+              <pre>  }</pre>
+              <pre>})</pre>
+            </code>
+          </li>
+          <li class="info">
+            <h3 id="date-time-range">日期范围择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex7.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>界面展现示例： 2017-10-10~2017-10-11</li>
+              <li>可能的输入参数：默认开始日期，默认结束日期，可选日期范围</li>
+              <li>可能的输出参数：开始日期，结束日期</li>
+              <li>提供常用的区间快捷显示：今明、昨今、本周、本月、上周、上月、自选</li>
+              <li>选择周自动关闭控件</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info showAPI">
+            <h3>API使用</h3>
+            <p class="quote">如下代码示例：</p>
+            <code>
+              <pre>$('.box').pickDate({</pre>
+              <pre>  type: 'dateRange',<span class="comments">//控件类型：日</span></pre>
+              <pre>  id: 'dateRange',<span class="comments">//指定input的id</span></pre>
+              <pre>  timePicker: false,<span class="comments">//是否显示时分选择</span></pre>
+              <pre>  changeRange: function(start,end,label){<span class="comments">//改变时间回调</span></pre>
+              <pre>    $showbox.html("已选: " + start.format('YYYY-MM-DD') + " to " + end.format('YYYY-MM-DD') + " (范围:"  + label + ")");</pre>
+              <pre>  }</pre>
+              <pre>})</pre>
+            </code>
+          </li>
+          <li class="info">
+            <h3 id="date-month-range">月范围选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img style="width: 38%;" src="date-all/demo/ex8.png"><img style="width: 50%;" src="date-all/demo/ex9.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>可能的输入参数：默认选择时间（默认为当月-下月）</li>
+              <li>可能的输出参数：所选时间范围</li>
+              <li>选择开始时间自动打开结束时间控件，选择结束时间关闭控件</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info showAPI">
+            <h3>API使用</h3>
+            <p class="quote">如下代码示例：</p>
+            <code>
+              <pre>$('.box').pickDate({</pre>
+              <pre>  type: 'monthRange',<span class="comments">//控件类型：月范围</span></pre>
+              <pre>  beginClass: 'startime',<span class="comments">//指定开始时间div的class</span></pre>
+              <pre>  beginId: 'startMonth',<span class="comments">//指定开始时间input的id</span></pre>
+              <pre>  endClass: 'endtime',<span class="comments">//指定结束时间div的class</span></pre>
+              <pre>  endId: 'endMonth',<span class="comments">//指定结束时间input的id</span></pre>
+              <pre>  fill: true,<span class="comments">//是否启用自动填充</span></pre>
+              <pre>  changeBeginDate: function(){<span class="comments">//改变开始时间回调</span></pre>
+              <pre>    $showbox.html('已选时间：'+$('#startMonth').val())</pre>
+              <pre>  },</pre>
+              <pre>  changeEndDate: function(){<span class="comments">//改变结束时间回调</span></pre>
+              <pre>    $showbox.html('已选时间：'+$('#endMonth').val())</pre>
+              <pre>  }</pre>
+              <pre>})</pre>
+            </code>
+          </li>
+        </ul>
+      </section>
+      <!-- 日期组件end -->
+
+      <!-- 帮助组件start -->
+      <section id="helper">
+        <h2>帮助组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h6>此组件还在路上~</h6>
+            <img class="ontheway" src="images/ontheway.jpg">
+          </li>
+        </ul>
+      </section>
+      <!-- 帮助组件end -->
+
+      <!-- 弹窗组件start -->
+      <!-- <section id="pop-window">
+        <h2>弹窗组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h3>功能介绍：</h3>
+            <p>当点击事先绑定好的元素(eg: button)时弹出一个至少包含标题、右上角关闭按钮、“确定”及“取消”按钮的窗口</p>
+          </li>
+          <li class="info">
+            <h3>示例图(不锁屏)：</h3>
+            <a href="popalert/popalert.html" target="_blank"><img src="popalert/demo/ex.png"></a>
+          </li>
+          <li class="info">
+            <h3>示例图(锁屏)：</h3>
+            <a href="popalert/popalert-locker.html" target="_blank"><img src="popalert/demo/ex1.png"></a>
+          </li>
+          <li class="info">
+            <h3>使用说明：</h3>
+            <ol class="usage">
+              <li>单击按钮弹出窗口，默认显示在屏幕居中位置</li>
+              <li>单击“确定”、“取消”、右上角关闭按钮都会关闭窗口</li>
+              <li>窗口弹出时，按下ESC键相当于点击右上角关闭按钮，按下enter键相当于点击“确定”按钮</li>
+              <li>当锁定时，除窗口外其他页面其他部分都不可点</li>
+            </ol>
+          </li>
+          <li class="info">
+            <h3>API使用</h3>
+            <p class="quote">
+              引入必须css及js文件后即可使用$.popWindow方法来调用弹出窗，示例代码如下：
+              注：1.popwindow.js依赖于jQuery，必须在jQuery之后引入。
+                  2.避免在页面解析完之前就执行$.popWindow无效，建议将方法调用放入$(function(){})
+             </p>
+            <code>
+              <pre>&lt;link rel="stylesheet" type="text/css" href="../universal/universal.css"></pre>
+              <pre>&lt;link rel="stylesheet" type="text/css" href="../universal/font-awesome-4.7.0/css/font-awesome.min.css"></pre>
+              <pre>&lt;link rel="stylesheet" type="text/css" href="popwindow.css"></pre>
+              <pre>&lt;script src="../universal/jquery-3.2.1.min.js"></script></pre>
+              <pre>&lt;script src="popalert.js"></script></pre>
+              <pre>&lt;button>谈一个窗&lt;/button></pre>
+              <pre>&lt;script></pre>
+              <p>在需绑定HTML元素后调用</p>
+              <pre>$('button').on('click',function(){</pre>
+              <pre> $.popWindow({</pre>
+              <pre>   title: 'Hello World!',   <span class="comments">//窗口标题</span></pre>
+              <pre>   lock: true,      <span class="comments">//是否锁屏</span></pre>
+              <pre>   position: 'center',        <span class="comments">//窗口显示位置</span></pre>
+              <pre>   onclose: function(){ <span class="comments">//点击右上角按钮回调</span></pre>
+              <pre>     //方法体</pre>
+              <pre>   },</pre>
+              <pre>   onsure: function(){     <span class="comments">//点击“确定”按钮回调</span></pre>
+              <pre>     //方法体</pre>
+              <pre>   }, </pre>
+              <pre>   oncancel: function(){   <span class="comments">//点击“取消”按钮回调</span></pre>
+              <pre>     //方法体</pre>
+              <pre>   },</pre>
+              <pre>   funcs: $('.inner-box').clone() <span class="comments">//需要放入窗口显示的内容，若是HTML字符串则解析为dom节点</span> </pre>
+              <pre> });</pre>
+              <pre>});</pre>
+              <pre> &lt;/script></pre>
+              <p>在head标签中事先调用</p>
+              <pre>$(function(){</pre>
+              <pre> $.popWindow({</pre>
+              <pre>   title: 'Hello World!',    <span class="comments">//窗口标题</span></pre>
+              <pre>   lock: true,   <span class="comments">//是否锁屏</span></pre>
+              <pre>   //position: 'center',        <span class="comments">//窗口显示位置</span></pre>
+              <pre>   onclose: function(){ <span class="comments">//点击右上角按钮回调</span></pre>
+              <pre>   //confirm('你确定？')</pre>
+              <pre>   },</pre>
+              <pre>   onsure: function(){     <span class="comments">//点击“确定”按钮回调</span></pre>
+              <pre>   alert('这是确定');</pre>
+              <pre>   },</pre>
+              <pre>   oncancel: function(){   <span class="comments">//点击“取消”按钮回调</span></pre>
+              <pre>   alert('这是取消');</pre>
+              <pre>   },</pre>
+              <pre>   funcs: $('.inner-box').clone() <span class="comments">//需要放入窗口显示的内容，若是HTML字符串则解析为dom节点</span> </pre>
+              <pre> });</pre>
+              <pre>})</pre>
+              <pre>$('button').on('click',function(){ <span class="comments">显示给按钮绑定单击显示窗口事件</span></pre>
+              <pre>  $('#pop-window').show();</pre> 
+              <pre>})</pre>
+            </code>
+          </li> 
+        </ul>
+      </section> -->
+      <!-- 弹窗组件end -->
+
+      <!-- 数据表格组件start -->
+      <!-- <section id="data-table">
+        <h2>数据表格组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h6>此组件还在路上~</h6>
+            <img class="ontheway" src="images/ontheway.jpg">
+          </li>
+        </ul>
+      </section> -->
+      <!-- 数据表格组件end -->
+
+      <!-- 容器组件start -->
+      <!-- <section id="layout-box">
+        <h2>容器组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h6>此组件还在路上~</h6>
+            <img class="ontheway" src="images/ontheway.jpg">
+          </li>
+        </ul>
+      </section> -->
+      <!-- 容器组件end -->
+
+      <!-- 下拉帮助组件start -->
+      <!-- <section id="down-list-help">
+        <h2>下拉帮助组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h6>此组件还在路上~</h6>
+            <img class="ontheway" src="images/ontheway.jpg">
+          </li>
+        </ul>
+      </section> -->
+      <!-- 下拉帮助组件end -->
+
+      
+    </article>
+
+
+    <!-- 测试人员查看 -->
+    <article id="for-test">
+      <!-- 日期组件start -->
+      <section id="date-picker">
+        <h2>日期组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h3>基本介绍：</h3>
+            <p><p>本系列组件包含时、日、周、月、季、年及时间段等独立选择组件，具有各自的时间选择功能</p></p>
+            <p class="tip">注：单击图片跳转到对应demo页面</p>
+          </li>
+          <li class="info">
+            <h3 id="date-time">时间选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>显示格式示例：2017-10-10 10:10</li>
+              <li>可能的输入参数：默认选择时间（默认为当天 00：00）</li>
+              <li>可能的输出参数：所选时间</li>
+              <li>选择时间自动关闭控件</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info">
+            <h3 id="date-day">日期选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex2.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>显示格式示例：2017-10-10</li>
+              <li>可能的输入参数：默认选择时间（默认为当天）</li>
+              <li>可能的输出参数：所选时间</li>
+              <li>选择时间自动关闭控件</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info">
+            <h3 id="date-month">月份选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex3.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>显示格式示例：2017-10</li>
+              <li>可能的输入参数：默认选择时间（默认为当月）</li>
+              <li>可能的输出参数：所选时间</li>
+              <li>选择时间自动关闭控件</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info">
+            <h3 id="date-quarter">季度选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex4.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>后台所需格式示例：201701 （示例页面显示结果为 “简格式”）</li>
+              <li>可能的输入参数：默认选择时间（默认为当前季度）</li>
+              <li>可能的输出参数：所选季度</li>
+              <li>选择季度自动关闭控件</li>
+              <li>一页标签显示四季度</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info">
+            <h3 id="date-year">年份选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex5.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>显示格式示例：2017</li>
+              <li>可能的输入参数：默认选择时间（默认为当年）</li>
+              <li>可能的输出参数：所选年份</li>
+              <li>选择年份自动关闭控件</li>
+              <li>一页标签显示十年（2010-2019</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info">
+            <h3 id="date-week">周选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex6.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>后台所需格式示例：2017-45 （示例页面显示结果为 “简格式”）</li>
+              <li>可能的输入参数：默认选择时间（默认为当前周）</li>
+              <li>可能的输出参数：所选周</li>
+              <li>选择周自动关闭控件</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info">
+            <h3 id="date-time-range">日期范围择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img src="date-all/demo/ex7.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>界面展现示例： 2017-10-10~2017-10-11</li>
+              <li>可能的输入参数：默认开始日期，默认结束日期，可选日期范围</li>
+              <li>可能的输出参数：开始日期，结束日期</li>
+              <li>提供常用的区间快捷显示：今明、昨今、本周、本月、上周、上月、自选</li>
+              <li>选择周自动关闭控件</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+          <li class="info">
+            <h3 id="date-month-range">月范围选择：</h3>
+            <a href="date-all/demo-beta-test.html" target="_blank"><img style="width: 38%;" src="date-all/demo/ex8.png"><img style="width: 50%;" src="date-all/demo/ex9.png"></a>
+          </li>
+          <li class="info">
+            <h3>控件需求：</h3>
+            <ol class="usage">
+              <li>可能的输入参数：默认选择时间（默认为当月-下月）</li>
+              <li>可能的输出参数：所选时间范围</li>
+              <li>选择开始时间自动打开结束时间控件，选择结束时间关闭控件</li>
+              <li>输入与键盘方向键选择只能选择其一</li>
+              <li><a href="date-all/demo-beta-test.html" target="_blank">demo在这</a></li>
+            </ol>
+          </li>
+        </ul>
+      </section>
+      <!-- 日期组件end -->
+
+      <!-- 帮助组件start -->
+      <section id="helper">
+        <h2>帮助组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h6>此组件还在路上~</h6>
+            <img class="ontheway" src="images/ontheway.jpg">
+          </li>
+        </ul>
+      </section>
+      <!-- 帮助组件end -->
+      
+      <!-- 弹窗组件start -->
+      <!-- <section id="pop-window">
+        <h2>弹窗组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h3>功能介绍：</h3>
+            <p>当点击事先绑定好的元素(eg: button)时弹出一个至少包含标题、右上角关闭按钮、“确定”及“取消”按钮的窗口</p>
+          </li>
+          <li class="info">
+            <h3>示例图(不锁屏)：</h3>
+            <a href="popalert/popalert.html" target="_blank"><img src="popalert/demo/ex.png"></a>
+          </li>
+          <li class="info">
+            <h3>示例图(锁屏)：</h3>
+            <a href="popalert/popalert-locker.html" target="_blank"><img src="popalert/demo/ex1.png"></a>
+          </li>
+          <li class="info">
+            <h3>使用说明：</h3>
+            <ol class="usage">
+              <li>单击按钮弹出窗口，默认显示在屏幕居中位置</li>
+              <li>单击“确定”、“取消”、右上角关闭按钮都会关闭窗口</li>
+              <li>窗口弹出时，按下ESC键相当于点击右上角关闭按钮，按下enter键相当于点击“确定”按钮</li>
+              <li>当锁定时，除窗口外其他页面其他部分都不可点</li>
+            </ol>
+          </li>
+        </ul>
+      </section> -->
+      <!-- 弹窗组件end -->
+
+      <!-- 数据表格组件start -->
+      <!-- <section id="data-table">
+        <h2>数据表格组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h6>此组件还在路上~</h6>
+            <img class="ontheway" src="images/ontheway.jpg">
+          </li>
+        </ul>
+      </section> -->
+      <!-- 数据表格组件end -->
+
+      <!-- 容器组件start -->
+      <!-- <section id="layout-box">
+        <h2>容器组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h6>此组件还在路上~</h6>
+            <img class="ontheway" src="images/ontheway.jpg">
+          </li>
+        </ul>
+      </section> -->
+      <!-- 容器组件end -->
+
+      <!-- 下拉帮助组件start -->
+      <!-- <section id="down-list-help">
+        <h2>下拉帮助组件</h2>
+        <ul class="info-list">
+          <li class="info">
+            <h6>此组件还在路上~</h6>
+            <img class="ontheway" src="images/ontheway.jpg">
+          </li>
+        </ul>
+      </section> -->
+      <!-- 下拉帮助组件end -->
+
+      
+    </article>
+  </div>
+
+  <script src="jquery-3.2.1.min.js"></script>
+  <script src="smoothscroll.min.js"></script>
+  <script>
+    (function(document){
+      var $ = function(el){
+        return document.getElementById(el);
+      }
+      $('dev').addEventListener('click',removeH('for-test'),false);
+      $('test').addEventListener('click',removeH('for-dev'),false);
+      $('test').addEventListener('mouseenter',function(){
+        $('dev').className = 'blur';
+      },false);
+      $('test').addEventListener('mouseleave',function(){
+        $('dev').className = '';
+      },false);
+      function removeH(el){
+        return function(){
+          document.documentElement.className = '';
+          var t = $(el);
+          t.parentNode.removeChild(t);
+        }         
+      }
+    }(document));
+    // 
+    $(function(){
+      var $category = $('#category');
+      $category.on('click','dt',function(){
+        var $this = $(this), 
+            $thisddul = $this.next().children();
+        $this.hasClass('open') ? $this.removeClass('open').next('dd').attr('style',null) : $this.addClass('open').next('dd').height($thisddul.height()).end().siblings('.open').removeClass('open').next('dd').attr('style',null);
+        $thisddul = null;
+      }).children().on('click','dd>ul>li>a',function(e){
+        e.preventDefault();
+        var href = this.hash,
+            id = href.substr(1,href.indexOf('-'));
+        $.smoothScroll({
+          scrollTarget: href,
+          offset: -$category[0].offsetTop - 12
+        });
+        return false;
+      });
+    });
+  </script>
+</body>
+</html>

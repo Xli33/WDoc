@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+   <head>
+      <meta charset="UTF-8" />
+      <title>A date range picker for Bootstrap</title>
+      <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" media="all" href="daterangepicker.css" />
+      <link rel="stylesheet" type="text/css" href="bootstrap-datetimepicker.css">
+      <link href="bootstrap-datepicker3.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="datequarterpicker.css">
+      <script src="bootstrap-3.3.7-dist/jquery-1.12.4.min.js"></script>
+
+      <style type="text/css">
+        
+        .con{
+          padding: 2em;
+        }
+        .box,.con{
+          text-align: center;
+        }
+        .box>div{
+          vertical-align: middle;
+          margin-right: 1em;
+        }
+        .in{
+          margin: 2rem;
+        }
+        div#showbox {
+          margin-top: 15em;
+          background-color: #aee8b7;
+          padding: 1em;
+        }
+        .m>.t.date {
+          width: 120px;
+        }
+        .t{
+          margin: 1em 0;
+        }
+        button{
+          border: 1px solid salmon;
+          background-color: transparent;
+        }
+        
+
+      </style>
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+   </head>
+   <body>
+     <div class="con">
+      <div class="box"><label>时：</label></div>
+      <div class="in"></div>
+      <div class="m"></div>
+      <div id="showbox"></div>
+     </div>
+      
+
+
+
+
+      <script src="bootstrap.min.js"></script>
+      <script src="bootstrap-datetimepicker.js"></script>
+      <script src="bootstrap-datetimepicker.zh-CN.js"></script>
+      <script src="moment.min.js"></script>
+      <script src="daterangepicker.js"></script>
+      <script src="JsSimpleDateFormat.min.js"></script>
+      <script src="bootstrap-datepicker.js"></script>
+      <script src="bootstrap-datepicker.zh-CN.min.js"></script>
+      <script src="pickdate.js"></script>
+
+      <script>
+        $(function(){
+          var $showbox = $('#showbox');
+          $('.box').pickDate({
+            type: 'time',
+            id: 'ctime',
+            fill: true,
+            todayBtn: true,
+            changeDate: function(){
+              $showbox.html('已选时间：'+$('#ctime').val())
+            }
+          }).append('<label>日：</label>').pickDate({
+            type: 'day',
+            id: 'cday',
+            fill: true,
+            todayBtn: true,
+            changeDate: function(){
+              $showbox.html('已选时间：'+$('#cday').val())
+            }
+          }).append('<label>月：</label>').pickDate({
+            type: 'month',
+            id: 'choose-month',
+            fill: true,
+            todayBtn: true,
+            changeDate: function(){
+              $showbox.html('已选时间：'+$('#choose-month').val())
+            }
+         }).append('<label>季：</label>').pickDate({
+            type: 'quarter',
+            id: 'choose-quarter',
+            fill: true,
+            readonly: true,
+            startDate: 2011,
+            quarChosen: function(a){//alert(123)
+              $showbox.html('已选时间：'+$('#choose-quarter').val()+'----简格式：'+a);
+            }
+         }).append('<label>年：</label>').pickDate({
+            type: 'year',
+            id: 'cyear',
+            fill: true,
+            changeDate: function(){
+              $showbox.html('已选时间：'+$('#cyear').val())
+            }
+          }).append('<label>周：</label>').pickDate({
+            type: 'week',
+            id: 'choose-week',
+            fill: true,
+            readonly: true,
+            weekChosen: function(startweekdate,endweekdate,sv,input){
+              $showbox.html('您选择了 '+input.val()+'----简格式：'+sv+'<br>'+'开始日期是：'+startweekdate+'<br>'+'结束日期是：'+endweekdate);
+          }
+         }).next('.in').append('<label>日期范围：</label>').pickDate({
+            type: 'dateRange',
+            id: 'date-range',
+            timePicker: false,
+            changeRange: function(start,end,label){
+              $showbox.html("已选: " + start.format('YYYY-MM-DD') + " to " + end.format('YYYY-MM-DD') + " (范围:"  + label + ")");
+            }
+          }).next('.m').append('<label>月范围：</label>').pickDate({
+            type: 'monthRange',
+            beginClass: 'startime',
+            beginId: 'startMonth',
+            endClass: 'endtime',
+            endId: 'endMonth',
+            fill: true,
+            changeBeginDate: function(){
+              $showbox.html('已选时间：'+$('#startMonth').val())
+            },
+            changeEndDate: function(){
+              $showbox.html('已选时间：'+$('#endMonth').val())
+            }
+          });
+        });
+
+
+      </script>
+
+   </body>
+</html>

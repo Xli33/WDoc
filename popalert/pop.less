@@ -1,0 +1,66 @@
+@import '../universal/vars';
+
+@ts: background .2s linear,color .2s linear;
+
+#pop-window{
+  position: fixed;
+  top: 0;
+  &.locker{
+    .square(100%);
+    .blur(.35)
+  }
+  &>#pop-container{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background-color: antiquewhite;
+    max-width: 768px;
+    .box-s-shadow(@box-shadow);
+    &>.pop-header{
+      background-color: cornflowerblue;
+      font-size: 2rem;
+      position: relative;
+      .head-shadow;
+      &>#pop-window-title{
+        font-size: 2rem;
+        .m0;
+        margin-right: 2em;
+        padding: 1rem;
+      }
+      &>.fa{
+        font-size: 1em;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        margin-top: -.5em;
+      }
+    }
+    &>#pop-content{
+      padding: .5rem 1rem;
+      font-size: 15px;
+      max-height: 550px;
+      overflow: auto;
+      .break-all;
+    }
+    &>.pop-footer{
+      padding: 1rem;
+      &>button{
+        margin-left: 10px;
+        font-size: 1.3rem;
+        outline: none;
+        padding: 2px 12px;
+        border-color: cornflowerblue;
+        .transition(@ts);
+      }
+      &>button:hover{
+        background-color: cornflowerblue;
+      }
+      &>button:hover:focus{
+        background-color: aliceblue;
+      }
+      &>button:focus{
+        background-color: aliceblue;
+      }
+    }
+  }
+}
