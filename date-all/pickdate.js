@@ -28,10 +28,10 @@
                         +'</div>',
           quarterBody: '<div class="quarter-body"><ul class="quarter-year"></ul></div>',
           quarterQuars: '<ul class="quarter-quars clearfix">'
-                        +'<li>1季度</li>'
-                        +'<li>2季度</li>'
-                        +'<li>3季度</li>'
-                        +'<li>4季度</li>'
+                        +'<li>第1季度</li>'
+                        +'<li>第2季度</li>'
+                        +'<li>第3季度</li>'
+                        +'<li>第4季度</li>'
                         +'</ul>'
         };
       var $quarterPicker = $(Quarter.quarterPicker),
@@ -57,9 +57,7 @@
             $quarterBody.children('.quarter-year').html(fillYear(currentYear-0-10));
           }
         }else{
-          if(currentYear>start){
-            $current.html(currentYear-1);
-          }
+          currentYear>start ? $current.html(currentYear-1) : null;
         }
       });
       $next.on('click',function(){
@@ -71,9 +69,7 @@
             $quarterBody.children('.quarter-year').html(fillYear(currentYear-0+10));
           }
         }else{
-          if(currentYear<2099){
-            $current.html(currentYear-0+1);
-          }
+          currentYear<2099 ? $current.html(currentYear-0+1) : null;
         }
       });
       $current.on('click',function(){
@@ -92,7 +88,7 @@
       var that = this[0].tagName==='INPUT'?this:this.find('input'); 
       $quarters.children().each(function(i,e){
         $(e).on('click',function(){
-          that.val($current.html()+' 第 '+(i+1)+' 季度');
+          that.val($current.html()+'年第'+(i+1)+'季度');
           $(document).trigger('click');
           option.changed ? option.changed(that.val().substr(0,4)+'0'+/\d/.exec(that.val().substr(5))) : null;
         });
@@ -109,13 +105,17 @@
         },
         change: option.changed
         
-      });
+      }).prev('.input-group-addon').on('click',function(e){
+          e.stopPropagation();
+          $(this).next().trigger('focus');
+        });
       $(document).on('click',function(){
         $quarterPicker.hide();
       });
       minView ? $quarterYear.show().next().hide() : $quarterYear.hide();
       $(container).append($quarterPicker);
       Quarter = null;
+      return this;
       // $quarterPicker = $quarterYear = $quarterBody = $quarters = null;
     },
     pickDate: function(obj){
@@ -198,10 +198,12 @@
             format: format,
             initialDate: initial //new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()) 
           }).on("changeDate",function(){
+            that.validateFormat(type,$('#'+that.o.id).val()) ? null : $('#'+that.o.id).val(that.value);
             that.o.changeDate ? that.o.changeDate() : null;
           });
           // createQ ? $div.children('input').on('input',that.o.quarChosen) : null ;
           this.o.fill ? $div.children('#'+this.o.id).val(final) : null;
+          this.value = final;
           this.pick.append($div);
           $div = inner = d = year = mon = day = hour = minute = final = className = use = null;
         },
@@ -219,6 +221,7 @@
           var $div = $('<div class="date-range"></div>'),
             inner = '<input type="text" id="'+this.o.id+'" class="form-control" '+(this.o.readonly?'readonly':'')+'><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>';
           var that = this;
+
           $div.append(inner).children('input').daterangepicker({
             locale: {
               format: this.o.timePicker ? "YYYY-MM-DD HH:mm" : 'YYYY-MM-DD',
@@ -230,7 +233,7 @@
               firstDay : 1,
               separator: ' ~ ',
               daysOfWeek : ['日', '一', '二', '三', '四', '五', '六'],
-              monthNames : ['一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月']
+              monthNames : ['1月', '2月', '3月', '4月', '5月', '6月','7月', '8月', '9月', '10月', '11月', '12月']
             },
             ranges: {
               '昨日-今日': [moment().subtract(1,'days'), moment()],
@@ -246,6 +249,8 @@
             timePicker24Hour: this.o.timePicker  
           }, function(start, end, label) {
             that.o.changeRange ? that.o.changeRange(start, end, label) : null;
+          }).next('i').on('click',function(){
+            $(this).prev().trigger('focus');
           });
           this.pick.append($div);
           delete this.spanTemplate;
@@ -255,7 +260,7 @@
           var $div = $('<div class="t week"><div id='+this.o.id+' class="input-group input-daterange"></div></div>'),
               inner = this.spanTemplate('dashboard') + '<input type="text" class="form-control" '+(this.o.readonly?'readonly':'')+'>',
               weekBegin,weekEnd,weekFormatter,weekEndFirst,defaults;
-          weekFormatter = new JsSimpleDateFormat("yyyy年 '第 'w' 周'", 'en', true);
+          weekFormatter = new JsSimpleDateFormat("yyyy年'第'w'周'", 'en', true);
           weekFormatter.isLenient = true;
           var that = this;
           $div.children().append(inner).datepicker({
@@ -267,6 +272,9 @@
             language: 'zh-CN',
             weekStart: 1,
             maxViewMode: 2,
+            changeDate: function(){console.log(1)
+              that.validateFormat('week',$('#'+that.o.id).children('input').val()) ? null : $('#'+that.o.id).children('input').val(that.value);
+            },
             weekPicker: {
               formatWeek: function(startWeekDate, options, $datepicker) {
                 weekBegin = startWeekDate.toISOString().substr(0,10);
@@ -277,6 +285,7 @@
                   weekEndFirst = weekEnd;
                   $datepicker.off('click change blur');
                   defaults = null;
+                  console.log(2)
                   that.o.weekChosen ? that.o.weekChosen(weekBegin,weekEnd,simpleVal,$datepicker) : null;
                 }
                 return weekFormatter.format(startWeekDate);
@@ -286,7 +295,10 @@
               }
             }
           });
-          this.o.fill ? $div.children().children().val(moment().year() +'年 第 '+moment().week()+' 周').on({
+          $div.children().children('span').on('click',function(){
+            $(this).next('input').trigger('focus')
+          })
+          this.o.fill ? $div.children().children().val(moment().year() +'年第'+moment().week()+'周').on({
             click: function(){
               defaults = this.value;
             },
@@ -309,12 +321,17 @@
         },
         pickQuarter: function(){ 
           var $div = $('<div class="t input-group date class="quarter-pickr" data-link-field="'+this.o.id+'"></div>'),
-              inner =  this.spanTemplate('th-large') + '<input id="'+this.o.id+'" type="text" class="form-control" '+(this.o.readonly?'readonly':'')+'>';          
+              inner =  this.spanTemplate('th-large') + '<input id="'+this.o.id+'" type="text" class="form-control" '+(this.o.readonly?'readonly':'')+'>';
+          var that = this;         
           $div.append(inner).datequarterpicker({
             startDate: this.o.startDate,
-            changed: this.o.quarChosen
+            changed: function(){
+              that.validateFormat('quarter',$('#'+that.o.id).val()) ? null : $('#'+that.o.id).val(that.value);
+              that.o.quarChosen ? that.o.quarChosen() : null;
+            }
           });
-          this.o.fill ? $div.children('input').val(moment().year()+' 第 '+moment().quarter()+' 季度') : null;
+          this.o.fill ? $div.children('input').val(moment().year()+'年第'+moment().quarter()+'季度') : null;
+          this.value = $div.children('input').val();          
           this.pick.append($div);
           return this.pick;
         },
@@ -365,6 +382,25 @@
           this.pick.append($divS,'<label class="sep">至</label>',$divE)
           $divS = $divE = innerB = innerE = null;
           return this.pick;
+        },
+        validateFormat: function(type,val){          
+          var dyear = val.substr(0,4),
+              valY = /\d{4}/.test(dyear) && dyear >= 2000 && dyear <= 2099;
+          if(type==='quarter')return valY && /年第[1-4]季度/.test(val.substr(4));
+          if(type==='week')return valY && /年第[1-53]周/.test(val.substr(4));
+          var dmonth = val.substr(5,2),
+              dday = val.substr(8,2),
+              dhour = val.substr(11,2),
+              dminute = val.substr(14,2),
+              valM = /0[1-9]|[10-12]/.test(dmonth),
+              valD = /0[1-9]|[10-31]/.test(dday),
+              valH = /0[0-9]|[10-23]/.test(dhour),
+              valMin = /0[1-9]|[10-59]/.test(dminute);
+
+          if(type === 'year')return val.length === 4 && valY;
+          if(type === 'month')return val.length === 7 && valY && valM;
+          if(type === 'day')return val.length === 10 && valY && valM && valD;
+          if(type === 'time')return val.length === 10 && valY && valM && valD && valH && valMin;          
         }
       }
 

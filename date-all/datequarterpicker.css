@@ -85,7 +85,7 @@ span.invalid {
 .quarter-quars>li {
   float: left;
   font-size: 18px;
-  padding: 20px;
+  padding: 20px 16px;
   width: 50%;
 }
 .quarter-quars>li:hover {

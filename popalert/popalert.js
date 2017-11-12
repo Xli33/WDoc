@@ -1,37 +1,34 @@
 (function($){
  var popWindow = function cW(obj){
- 		if(document.getElementById('pop-window')){
- 			return;
- 		}
  		//若传入参数不为object类型则提示参数类型错误
  		if(obj && typeof obj!=='object'){
  			console.log('Wrong type of argument, which should be of object!');
  			return;
  		}
- 		var $popWindow = $('<div id="pop-window"></div>'),
- 				$popContainer = $('<div id="pop-container"></div>'),
+ 		var $popWindow = $('<div class="pop-window fade"></div>'),
+ 				$popContainer = $('<div class="pop-container"></div>'),
  				html = '<div class="pop-header">'
-								+'<h1 id="pop-window-title">Hello</h1>'
+								+'<h1 class="pop-window-title">Hello</h1>'
 								+'<i class="fa fa-window-close-o" aria-hidden="true"></i>'
 							+'</div>'
-							+'<div id="pop-content">此处可添加HTML片段'
+							+'<div class="pop-content">此处可添加HTML片段'
 							+'</div>'
 							+'<div class="pop-footer clearfix">'
 								+'<button class="pop-cancel right">取消</button>'
 								+'<button class="pop-sure right">确定</button>'
 							+'</div>';
 		$popContainer.append(html);
-		// console.log(html);
+		// console.log($popContainer.height());
 		html = null;
 		
 		// console.log($popContainer.children('#pop-content'));
-		var $popTitle = $popContainer.children().children('#pop-window-title'),
+		var $popTitle = $popContainer.children().children('.pop-window-title'),
 				$close = $popTitle.next(),
-				$popContent = $popContainer.children('#pop-content'),
+				$popContent = $popContainer.children('.pop-content'),
 				$sure = $popContainer.find('.pop-sure'),
 				$cancel = $popContainer.find('.pop-cancel'),
 				closeWindow = function(){
-					$popWindow.hide();//console.log(window.event.target)
+					$popWindow.removeClass('fadeIn').removeClass('locker').addClass('fadeOut').children().removeClass('pop-up');
 					$(window.event.target).blur();
 				},
 				posWindow = function(){
@@ -74,24 +71,15 @@
 		}else{
 			$(document.body).append($popWindow.append($popContainer));
 			posWindow();
-		}
+		}//console.log(this)
 		// 若调用方式为元素触发事件生成弹窗
-		if(window.event||cW.caller.arguments[0].target){//console.log(window.event||cW.caller.arguments[0].target)
-			var e = window.event || cW.caller.arguments[0];
-			$(e.target).on('click',function(){
-				$popWindow.show();
+			this.on('click',function(){
+				$popWindow.removeClass('fadeOut').addClass('locker fadeIn').children().addClass('pop-up');
 			});
- 		}else{//console.log(window.event||cW.caller.arguments[0].target)
- 			$popWindow.hide();
- 		}
-		
-		// console.log(obj);
-		// console.log($popContainer.outerWidth())
-		// console.log($popContainer.outerHeight())
+
 		obj = null;//console.log(obj);
  }
  // 将popWindow扩展至jQuery上
- $.extend({popWindow:popWindow});
  $.fn.extend({popWindow:popWindow});
  popWindow = null;
 }($))

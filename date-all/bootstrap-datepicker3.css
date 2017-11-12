@@ -37,6 +37,7 @@
 .week span.input-group-addon {
 	background-color: #fff;
   border-left-width: 1px;
+  cursor: pointer;
   padding: 4px 10px;
 }
 /* .datepicker-dropdown:before {
@@ -540,8 +541,8 @@ fieldset[disabled] .datepicker table tr td.active.highlighted.focus {
 .datepicker table tr td span {
   display: block;
   width: 23%;
-  height: 54px;
-  line-height: 54px;
+  height: 48px;
+  line-height: 48px;
   float: left;
   margin: 1%;
   cursor: pointer;

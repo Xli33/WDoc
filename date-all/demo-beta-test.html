@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <title>A date range picker for Bootstrap</title>
-      <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" media="all" href="daterangepicker.css" />
       <link rel="stylesheet" type="text/css" href="bootstrap-datetimepicker.css">
       <link href="bootstrap-datepicker3.css" rel="stylesheet">
@@ -97,7 +97,7 @@
             type: 'month',
             id: 'choose-month',
             fill: true,
-            readonly: true,
+            // readonly: true,
             todayBtn: true,
             changeDate: function(){
               $showbox.html('已选时间：'+$('#choose-month').val())
@@ -106,7 +106,7 @@
             type: 'quarter',
             id: 'choose-quarter',
             fill: true,
-            readonly: true,
+            // readonly: true,
             startDate: 2011,
             quarChosen: function(a){//alert(123)
               $showbox.html('已选时间：'+$('#choose-quarter').val()+'----简格式：'+a);
@@ -115,7 +115,7 @@
             type: 'year',
             id: 'cyear',
             fill: true,
-            readonly: true,
+            // readonly: true,
             changeDate: function(){
               $showbox.html('已选时间：'+$('#cyear').val())
             }
@@ -123,7 +123,7 @@
             type: 'week',
             id: 'choose-week',
             fill: true,
-            readonly: true,
+            // readonly: true,
             weekChosen: function(startweekdate,endweekdate,sv,input){
               $showbox.html('您选择了 '+input.val()+'----简格式：'+sv+'<br>'+'开始日期是：'+startweekdate+'<br>'+'结束日期是：'+endweekdate);
           }

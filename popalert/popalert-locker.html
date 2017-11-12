@@ -8,25 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="../universal/font-awesome-4.7.0/css/font-awesome.min.css">
 	<script src="../universal/jquery-3.2.1.min.js"></script>
 	<script src="popalert.js"></script>
-	<script>
-		$(function(){//console.log(234)
-			$.popWindow({
-				title: 'Hello World!',
-				lock: true,
-				//position: 'center',
-				onclose: function(){
-					//confirm('你确定？')
-				},
-				onsure: function(){
-					alert('这是确定');
-				},
-				oncancel: function(){
-					alert('这是取消');
-				},
-				funcs: $('.inner-box').clone()
-			});	
-		})
-	</script>
+
 	<style>
 		.btn{
 			position: relative;
@@ -112,23 +94,20 @@
 	</div>
 
 	<script>
-		$('button').on('click',function(){
-			/*$.popWindow({
-				title: 'Hello World!',
-				// lock: true,
-				// position: 'center',
-				onclose: function(){
-					// confirm('你确定？')
-				},
-				onsure: function(){
-					alert('这是确定');
-				},
-				oncancel: function(){
-					alert('这是取消');
-				},
-				funcs: $('.inner-box').clone()
-			});*/
-			$('#pop-window').show()
+		$('button').popWindow({
+			title: 'Hello World!',
+			// lock: true,
+			// position: 'center',
+			onclose: function(){
+				// confirm('你确定？')
+			},
+			onsure: function(){
+				alert('这是确定');
+			},
+			oncancel: function(){
+				alert('这是取消');
+			},
+			funcs: '<iframe src="https://www.sogou.com/" frameborder="0"></iframe>'
 		});
 	</script>
 </body>

@@ -743,14 +743,14 @@
         endMonth = this.endDate.getUTCMonth() + 1,
         currentDate = (new UTCDate(this.date.getUTCFullYear(), this.date.getUTCMonth(), this.date.getUTCDate())).valueOf(),
         today = new Date();
-      this.setTitle('.datetimepicker-days', dates[this.language].months[month] + ' ' + year)
+      this.setTitle('.datetimepicker-days', year + '年' + dates[this.language].months[month])
       if (this.formatViewType === 'time') {
         var formatted = this.getFormattedDate();
         this.setTitle('.datetimepicker-hours', formatted);
         this.setTitle('.datetimepicker-minutes', formatted);
       } else {
-        this.setTitle('.datetimepicker-hours', dayMonth + ' ' + dates[this.language].months[month] + ' ' + year);
-        this.setTitle('.datetimepicker-minutes', dayMonth + ' ' + dates[this.language].months[month] + ' ' + year);
+        this.setTitle('.datetimepicker-hours', year + '年' + dates[this.language].months[month] + dayMonth + '日');
+        this.setTitle('.datetimepicker-minutes', year + '年' + dates[this.language].months[month] + dayMonth + '日');
       }
       this.picker.find('tfoot th.today')
         .text(dates[this.language].today || dates['en'].today)
@@ -839,7 +839,7 @@
             html.push('</fieldset>');
           }
         } else {
-          txt = i + ':00';
+          txt = i < 10 ? '0' + i : i;
           html.push('<span class="' + classes.join(' ') + '">' + txt + '</span>');
         }
       }

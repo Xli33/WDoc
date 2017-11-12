@@ -13,10 +13,10 @@ button {
   background-color: transparent;
   border: 1px solid black;
 }
-.left{
+.left {
   float: left;
 }
-.right{
+.right {
   float: right;
 }
 .clearfix::before,
