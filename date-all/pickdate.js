@@ -1,4 +1,4 @@
-(function($,Date,moment){
+(function($){
   'use strict';
 
   $.fn.extend({
@@ -103,7 +103,7 @@
         click: function(e){
           e.stopPropagation();
         },
-        change: option.changed
+        change: option.changed(that.val().substr(0,4)+'0'+/\d/.exec(that.val().substr(5)))
         
       }).prev('.input-group-addon').on('click',function(e){
           e.stopPropagation();
@@ -136,7 +136,7 @@
                 +'</span>';
         },
         pickTDMY: function(type){
-          var format,start,min,initial,final,className,/*createQ,*/use,
+          var format,start,min,initial,final,className,use,
               d = new Date(),
               year = d.getFullYear(),
               mon = d.getMonth()+1,
@@ -183,7 +183,6 @@
               inner =  this.spanTemplate(use) + '<input size="16" id="'+this.o.id+'" type="text" class="form-control"'+(this.o.readonly?'readonly':'')+'>';      
           var that = this;        
           $div.append(inner).datetimepicker({
-            // createQuarter: createQ,
             minuteStep: this.o.minStep,
             language: 'zh-CN',
             pickerPosition: 'bottom',
@@ -197,11 +196,11 @@
             linkFormat: format,
             format: format,
             initialDate: initial //new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()) 
-          }).on("changeDate",function(){
-            that.validateFormat(type,$('#'+that.o.id).val()) ? null : $('#'+that.o.id).val(that.value);
+          }).on("changeDate",function(){        
             that.o.changeDate ? that.o.changeDate() : null;
+          }).children('input').on('change',function(){console.log($('#'+that.o.id).val())
+            that.validateFormat(type,$('#'+that.o.id).val()) ? null : $('#'+that.o.id).val(that.value);
           });
-          // createQ ? $div.children('input').on('input',that.o.quarChosen) : null ;
           this.o.fill ? $div.children('#'+this.o.id).val(final) : null;
           this.value = final;
           this.pick.append($div);
@@ -210,7 +209,7 @@
         pickTime: function(){
           this.pickTDMY('time');         
           delete this.spanTemplate;
-          return this.pick;          
+          return this.pick;        
         },
         pickDay: function(){
           this.pickTDMY('day');
@@ -272,20 +271,16 @@
             language: 'zh-CN',
             weekStart: 1,
             maxViewMode: 2,
-            changeDate: function(){console.log(1)
-              that.validateFormat('week',$('#'+that.o.id).children('input').val()) ? null : $('#'+that.o.id).children('input').val(that.value);
-            },
             weekPicker: {
               formatWeek: function(startWeekDate, options, $datepicker) {
                 weekBegin = startWeekDate.toISOString().substr(0,10);
-                weekEnd = options.getWeekEndDate ? options.getWeekEndDate.substr(0,10) : null;
+                weekEnd = options.getWeekEndDate ? options.getWeekEndDate.substr(0,10) : null;                
                 if(weekEnd !== (weekEndFirst || null)){
                   var simpleVal = $datepicker.val().replace(/\W/g,'');
                       simpleVal = simpleVal.substr(0,4)+'-'+(simpleVal.substr(4)>=10?simpleVal.substr(4):'0'+simpleVal.substr(4));
                   weekEndFirst = weekEnd;
-                  $datepicker.off('click change blur');
-                  defaults = null;
-                  console.log(2)
+                  // $datepicker.off('click');
+                  defaults = null;                  
                   that.o.weekChosen ? that.o.weekChosen(weekBegin,weekEnd,simpleVal,$datepicker) : null;
                 }
                 return weekFormatter.format(startWeekDate);
@@ -294,22 +289,25 @@
                 return weekFormatter.parse(weekString);
               }
             }
+          }).children('input').on('blur',function(){
+            that.validateFormat('week',this.value) ? null : this.value = that.value;
           });
           $div.children().children('span').on('click',function(){
             $(this).next('input').trigger('focus')
-          })
-          this.o.fill ? $div.children().children().val(moment().year() +'年第'+moment().week()+'周').on({
+          });
+          this.o.fill ? $div.children().children().val(moment().year() +'年第'+moment().week()+'周').one({
             click: function(){
               defaults = this.value;
             },
             change: function(){
-              defaults = this.value;
+              defaults ? defaults = this.value : null;
             },
             blur:function(){
-              this.value = defaults;
+              defaults ? this.value = defaults : null;
             }
           }) : null;//console.log($div.find('#'+this.o.id));
           this.pick.append($div);
+          this.value = $div.children().children().val();
           $div = inner = null;
           delete this.spanTemplate;
           return this.pick;
@@ -325,10 +323,11 @@
           var that = this;         
           $div.append(inner).datequarterpicker({
             startDate: this.o.startDate,
-            changed: function(){
-              that.validateFormat('quarter',$('#'+that.o.id).val()) ? null : $('#'+that.o.id).val(that.value);
-              that.o.quarChosen ? that.o.quarChosen() : null;
+            changed: function(a){              
+              that.o.quarChosen ? that.o.quarChosen(a) : null;
             }
+          }).children('input').on('change',function(){
+            that.validateFormat('quarter',$div.children('input').val()) ? null : $div.children('input').val(that.value);
           });
           this.o.fill ? $div.children('input').val(moment().year()+'年第'+moment().quarter()+'季度') : null;
           this.value = $div.children('input').val();          
@@ -356,7 +355,8 @@
             keyboardNavigation: false,
             linkFormat: 'yyyy-mm',
             format: 'yyyy-mm'
-          }).on("changeDate",function(){
+          }).on("changeDate change",function(){
+            that.validateFormat('startMonth',this.value) ? null : this.value = that.value;
             var sel = moment($('#'+that.o.beginId).val()).add(1,'months').format('YYYY-MM');
             $('#'+that.o.endId).val(sel).datetimepicker("setStartDate",sel).trigger('focus');
             that.o.changeBeginDate ? that.o.changeBeginDate() : null;
@@ -380,27 +380,40 @@
             $divE.children('input').val(moment().add(1,'months').format('YYYY-MM'));
           }
           this.pick.append($divS,'<label class="sep">至</label>',$divE)
+          that.value = $divS.children('input').val();
           $divS = $divE = innerB = innerE = null;
           return this.pick;
         },
         validateFormat: function(type,val){          
           var dyear = val.substr(0,4),
               valY = /\d{4}/.test(dyear) && dyear >= 2000 && dyear <= 2099;
-          if(type==='quarter')return valY && /年第[1-4]季度/.test(val.substr(4));
-          if(type==='week')return valY && /年第[1-53]周/.test(val.substr(4));
+          if(type==='quarter'){
+            return valY && /^年第[1-4]季度$/.test(val.substr(4));
+          };
+          if(type==='week'){
+            return valY && /^年第\d{1,2}周$/.test(val.substr(4));
+          }
           var dmonth = val.substr(5,2),
               dday = val.substr(8,2),
               dhour = val.substr(11,2),
               dminute = val.substr(14,2),
-              valM = /0[1-9]|[10-12]/.test(dmonth),
-              valD = /0[1-9]|[10-31]/.test(dday),
-              valH = /0[0-9]|[10-23]/.test(dhour),
-              valMin = /0[1-9]|[10-59]/.test(dminute);
+              valM = /^(0[1-9]|10|11|12)$/.test(dmonth),
+              valD = /^0[1-9]$/.test(dday) || (dday >9 && dday < 32),
+              valH = /^0[0-9]$/.test(dhour) || (dhour > 9 && dhour <24),
+              valMin = /^0[1-9]$/.test(dminute) || (dminute > 9 && dminute < 60);//console.log(dyear+'-'+dmonth+'-'+dday+'-'+dhour+'-'+dminute)
 
-          if(type === 'year')return val.length === 4 && valY;
-          if(type === 'month')return val.length === 7 && valY && valM;
-          if(type === 'day')return val.length === 10 && valY && valM && valD;
-          if(type === 'time')return val.length === 10 && valY && valM && valD && valH && valMin;          
+          if(type === 'year'){
+            return val.length === 4 && valY;
+          }
+          if(type === 'month'||type==='startMonth'){
+            return val.length === 7 && valY && valM;
+          }
+          if(type === 'day'){
+            return val.length === 10 && valY && valM && valD;
+          }
+          if(type === 'time'){            
+            return val.length === 16 && valY && valM && valD && valH && valMin;
+          }
         }
       }
 
@@ -437,4 +450,4 @@
       }
     }
   })
-}(jQuery,Date,moment))  
+}(jQuery))  

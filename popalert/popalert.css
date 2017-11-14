@@ -21,9 +21,9 @@
   background: rgba(0, 0, 0, 0.35);
 }
 .pop-window > .pop-container {
-  position: fixed;
   left: 50%;
   top: 50%;
+  margin: 0 auto;
   background-color: antiquewhite;
   max-width: 768px;
   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.14), 0 1px 20px rgba(0, 0, 0, 0.12), 0 3px 20px -2px rgba(0, 0, 0, 0.2);

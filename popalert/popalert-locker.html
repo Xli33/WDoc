@@ -26,6 +26,7 @@
 </head>
 <body>
 	<button class="btn">弹出个窗</button>
+	<button class="btn1">弹出个窗2</button>
 	<div>
 		<div class="inner-box" >
 			<div class="entry-content">
@@ -108,7 +109,21 @@
 				alert('这是取消');
 			},
 			funcs: '<iframe src="https://www.sogou.com/" frameborder="0"></iframe>'
-		});
+		}).next().popWindow({
+            title: 'Hello World!',
+            // lock: true,
+            // position: 'center',
+            onclose: function(){
+                // confirm('你确定？')
+            },
+            onsure: function(){
+                alert('这是确定');
+            },
+            oncancel: function(){
+                alert('这是取消');
+            },
+            funcs: '<iframe src="https://www.baidu.com/" frameborder="0"></iframe>'
+        });
 	</script>
 </body>
 </html>
