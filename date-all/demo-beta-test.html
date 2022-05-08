@@ -4,14 +4,13 @@
       <meta charset="UTF-8" />
       <title>A date range picker for Bootstrap</title>
       <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" media="all" href="daterangepicker.css" />
-      <link rel="stylesheet" type="text/css" href="bootstrap-datetimepicker.css">
-      <link href="bootstrap-datepicker3.css" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="datequarterpicker.css">
-      <script src="bootstrap-3.3.7-dist/jquery-1.12.4.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
+      <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+      <link href="css/bootstrap-datepicker3.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="css/datequarterpicker.css">
+      
 
-      <style type="text/css">
-        
+      <style type="text/css">        
         .con{
           padding: 2em;
         }
@@ -26,7 +25,7 @@
           margin: 2rem;
         }
         div#showbox {
-          margin-top: 15em;
+          margin: .5em;
           background-color: #aee8b7;
           padding: 1em;
         }
@@ -35,16 +34,17 @@
         }
         .t{
           margin: 1em 0;
+          vertical-align: middle;
         }
         button{
           border: 1px solid salmon;
           background-color: transparent;
         }
-        
-
+        .box .t.date {
+          margin: 1rem;
+          margin-left: 0;
+        }
       </style>
-    
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -57,20 +57,41 @@
       <div class="in"></div>
       <div class="m"></div>
       <div id="showbox"></div>
+
+      <label>时间：</label><time data-name="time" data-id="time" data-auto-fill=true data-format='yyyy/mm/dd hh:ii' data-fill=true data-today-btn=true data-change-date='changed'></time>
+      <label>日期：</label><day data-name="day" data-id="day" data-auto-fill=true data-format='yyyy/mm/dd' data-fill=true data-today-btn=true data-change-date='changed'></day>
+      <label>月：</label><month data-name="month" data-id="month" data-auto-fill=true data-fill=true data-today-btn=true data-change-date='changed'></month>
+      <label>年：</label><year data-name="year" data-id="year" data-auto-fill=true data-fill=true data-today-btn=true data-change-date='changed'></year>
+      <label>季度：</label><quarter data-name="quarter" data-id="quarter" data-fill=true data-today-btn=true data-change-date='changed'></quarter>
+      <div class="other">
+        <label>周：</label><week data-name="week" data-id="week2" data-fill=true data-change-date='changedWeek'></week>
+        <label>日期范围：</label><dayrange data-name="dayrange" data-id="dayrange" data-change-date='changedRange'></dayrange>
+        <label>月范围：</label><monthrange data-begin-name="bm" data-end-name="em" data-id="monthrange" data-auto-fill=true data-fill=true data-begin-id='startM' data-end-id='endM' data-today-btn=true data-change-begin='changed' data-change-end='changed'></monthrange>
+      </div>
      </div>
+    
+    <script type="text/javascript">
+      function changed(){
+        console.log(arguments);
+      }
+      function changedWeek(startweekdate,endweekdate,sv,input){
+        console.log('您选择了 '+input.val()+'----简格式：'+sv+'<br>'+'开始日期是：'+startweekdate+'<br>'+'结束日期是：'+endweekdate);
+      }
+      function changedRange(start,end,label){
+        console.log("已选: " + start.format('YYYY-MM-DD') + " to " + end.format('YYYY-MM-DD') + " (范围:"  + label + ")");
+      }
+    </script>
       
-
-
-
-
-      <script src="bootstrap.min.js"></script>
-      <script src="bootstrap-datetimepicker.js"></script>
-      <script src="bootstrap-datetimepicker.zh-CN.js"></script>
-      <script src="moment.min.js"></script>
-      <script src="daterangepicker.js"></script>
-      <script src="JsSimpleDateFormat.min.js"></script>
-      <script src="bootstrap-datepicker.js"></script>
-      <script src="bootstrap-datepicker.zh-CN.min.js"></script>
+      <script src="bootstrap-3.3.7-dist/jquery-3.3.1.min.js"></script>
+      <!-- <script src="bootstrap.min.js"></script> -->
+      <script src="js/lunar.js"></script>
+      <script src="js/bootstrap-datetimepicker.js"></script>
+      <script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+      <script src="js/moment.min.js"></script>
+      <script src="js/daterangepicker.js"></script>
+      <script src="js/JsSimpleDateFormat.js"></script>
+      <script src="js/bootstrap-datepicker.js"></script>
+      <script src="js/bootstrap-datepicker.zh-CN.min.js"></script>
       <script src="pickdate.js"></script>
 
       <script>
@@ -80,12 +101,13 @@
             type: 'time',
             id: 'ctime',
             fill: true,
+            // format: 'yyyy-mm-dd hh:ii',
             todayBtn: true,
             // init: new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()),
             changeDate: function(){
-              $showbox.html('已选时间：'+$('#ctime').val())
+              $showbox.html('已选时间：'+$('#ctime').val());
             }
-          }).append('<div></div><label id="day">日：</label>').pickDate({
+          }).append('<div></div><label>日：</label>').pickDate({
             type: 'day',
             id: 'cday',
             fill: true,
@@ -93,25 +115,25 @@
             changeDate: function(){
               $showbox.html('已选时间：'+$('#cday').val())
             }
-          }).append('<div></div><label id="month">月：</label>').pickDate({
+          }).append('<div></div><label>月：</label>').pickDate({
             type: 'month',
             id: 'choose-month',
             fill: true,
             // readonly: true,
             todayBtn: true,
             changeDate: function(){
-              $showbox.html('已选时间：'+$('#choose-month').val())
+              $showbox.html('已选时间：'+$('#choose-month').val());
             }
-         }).append('<div></div><label id="quar">季：</label>').pickDate({
+         }).append('<div></div><label>季：</label>').pickDate({
             type: 'quarter',
             id: 'choose-quarter',
             fill: true,
             // readonly: true,
             startDate: 2011,
-            quarChosen: function(a){//alert(123)
+            changeDate: function(a){//alert(123)
               $showbox.html('已选时间：'+$('#choose-quarter').val()+'----简格式：'+a);
             }
-         }).append('<div></div><label id="year">年：</label>').pickDate({
+         }).append('<div></div><label>年：</label>').pickDate({
             type: 'year',
             id: 'cyear',
             fill: true,
@@ -119,22 +141,22 @@
             changeDate: function(){
               $showbox.html('已选时间：'+$('#cyear').val())
             }
-          }).append('<div></div><label id="week">周：</label>').pickDate({
+          }).append('<div></div><label>周：</label>').pickDate({
             type: 'week',
             id: 'choose-week',
             fill: true,
             // readonly: true,
-            weekChosen: function(startweekdate,endweekdate,sv,input){
+            changeDate: function(startweekdate,endweekdate,sv,input){
               $showbox.html('您选择了 '+input.val()+'----简格式：'+sv+'<br>'+'开始日期是：'+startweekdate+'<br>'+'结束日期是：'+endweekdate);
           }
-         }).next('.in').append('<div></div><label id="dayR">日期范围：</label>').pickDate({
+         }).next('.in').append('<div></div><label>日期范围：</label>').pickDate({
             type: 'dateRange',
             id: 'date-range',
-            timePicker: false,
-            changeRange: function(start,end,label){
+            // format: false,
+            changeDate: function(start,end,label){
               $showbox.html("已选: " + start.format('YYYY-MM-DD') + " to " + end.format('YYYY-MM-DD') + " (范围:"  + label + ")");
             }
-          }).next('.m').append('<div></div><label id="monthR">月范围：</label>').pickDate({
+          }).next('.m').append('<div></div><label hR">月范围：</label>').pickDate({
             type: 'monthRange',
             beginClass: 'startime',
             beginId: 'startMonth',

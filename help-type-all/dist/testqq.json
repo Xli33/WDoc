@@ -1,0 +1,62 @@
+{
+    "columns": [
+        {
+            "checkbox": true
+        },
+        {
+            "field": "test",
+            "title": "test",
+            "width": 180,
+            "align": "left",
+            "sortable": "true",
+            "formatter": "operateFormatter"
+        },
+        {
+            "field": "testA",
+            "title": "testA",
+            "width": 150,            
+            "align": "left"
+        },
+        {
+            "field": "testB",
+            "title": "testB",
+            "width": 100,
+            "align": "left",
+            "formatter": "func"
+        },
+        {
+            "field": "testC",
+            "title": "testC",
+            "width": 100,
+            "align": "left"
+        },
+        {
+            "field": "testD",
+            "title": "testD",
+            "width": 100,
+            "align": "right"
+        }
+    ],
+    "total": 52,
+    "success": true,
+    "rows": [
+        {
+            "id": 2,
+            "testA": "qqqq",
+            "testB": "001",
+            "testC": "0"
+        },
+        {
+            "id": 3,
+            "testA": "红红火火",
+            "testB": "01",
+            "testC": "002"
+        },
+        {
+            "id": 5,
+            "testA": "恍恍惚惚",
+            "testB": "01",
+            "testC": "001"
+        }
+    ]
+}

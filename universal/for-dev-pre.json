@@ -1,0 +1,873 @@
+{
+  "src": "http://downmobile.kugou.com/promote/package/download/channel=6",
+  "data": [
+    {
+      "id": "date-picker",
+      "head": "日期类",
+      "firstInfo" : {
+        "title" : "基本介绍：",
+        "description" : "本系列组件包含时、日、周、月、季、年及时间段等独立选择组件，具有各自的时间选择功能",
+        "tip" : "注：单击图片跳转到对应demo页面",
+        "quote" : "依赖文件引入：",
+        "dependencies" : {
+        	"css" : [
+        		"&lt;link href='../bootstrap-3.3.7-dist/css/bootstrap.css' rel='stylesheet'>",
+        		"&lt;link rel='stylesheet' type='text/css' href='date-all-min.css'>"
+        	],
+        	"js" : [
+        		"&lt;script src='../bootstrap-3.3.7-dist/jquery-3.3.1.min.js'>&lt;/script>",
+        		"&lt;script src='../js/moment.min.js'>&lt;/script>",
+        		"&lt;script src='date-all.js'>&lt;/script>"
+        	]
+        }
+      },
+      "infoList": [
+      	{
+          "title" : "时间选择：",
+          "id" : "date-time",
+          "href" : "date-all/dist/demo.html",
+          "src" : "date-all/demo/ex.png",
+          "showAPI" : {
+          	"title" : "使用示例",
+          	"tagUse" : {
+          		"title" : "自定义标签：",
+          		"example" : "&lt;time data-id='time' data-auto-fill='true' data-fill='true' data-today-btn='true' data-change-date='changed'>&lt;/time>",
+	         		"api" : {
+	         			"thead" : ["属性","含义","默认值"],
+	         			"tbody" : [
+                  ["data-id","指定input的id","-"],
+	         				["data-name","指定input的name","-"],
+	         				["data-format","显示格式","yyyy-mm-dd hh:ii"],
+	         				["data-minute-step","'分'界面每个选项间的时间间隔","5"],
+	         				["data-fill","是否启用自动填充","false"],
+	         				["data-auto-fill","是否启用输入时自动填充连接符","false"],
+	         				["data-readonly","是否让输入框只读","false"],
+	         				["data-start-date","开始时间","2000-01-01"],
+	         				["data-today-btn","是否显示底部按钮","false"],
+	         				["data-change-date","改变时间回调","-"]
+	         			]
+	         		}
+        		},
+          	"jsUse" : {
+          		"title" : "js调用：",
+          		"code" : [
+          			{"pre" : "$('.box').pickDate({"},
+          			{"pre" : "  type: 'time',    ","comment" : "控件类型：时"},
+                {"pre" : "  id: 'ctime',   ","comment" : "指定input的id"},
+          			{"pre" : "  name: 'ctime',   ","comment" : "指定input的name"},
+          			{"pre" : "  minuteStep: 1,   ","comment" : "分选择界面每个选项间的时间间隔，单位为 '分'，默认'5'"},
+          			{"pre" : "  format:  ,   ","comment" : "显示格式"},
+          			{"pre" : "  fill: true,    ","comment" : "是否启用自动填充"},
+          			{"pre" : "  readonly: true,    ","comment" : "是否让输入框只读"},
+          			{"pre" : "  startDate: new Date(),   ","comment" : "开始时间"},
+          			{"pre" : "  todayBtn: true,    ","comment" : "是否显示底部按钮"},
+          			{"pre" : "  changeDate: function(){    ","comment" : "改变时间回调"},
+          			{"pre" : "    $showbox.html('已选时间：'+$('#ctime').val())"},
+          			{"pre" : "  }"},
+          			{"pre" : "})"}
+          		]
+          	}
+          }
+      	},
+      	{
+      		"title" : "日期选择：",
+      		"id" : "date-day",
+      		"href" : "date-all/dist/demo.html",
+      		"src" : "date-all/demo/ex2.png",
+      		"showAPI" : {
+      			"title" : "使用示例",
+      			"tagUse" : {
+      				"title" : "自定义标签：",
+      				"example" : "&lt;day data-id='day' data-auto-fill='true' data-format='yyyy/mm/dd' data-fill='true' data-today-btn='true' data-change-date='changed'>&lt;/day>",
+	      			"api" : {
+	      				"thead" : ["属性","含义","默认值"],
+	      				"tbody" : [
+	      					["data-id","指定input的id","-"],
+                  ["data-name","指定input的name","-"],
+	      					["data-format","显示格式","yyyy-mm-dd"],
+	      					["data-fill","是否启用自动填充","false"],
+	      					["data-auto-fill","是否启用输入时自动填充连接符","false"],
+	      					["data-readonly","是否让输入框只读","false"],
+	      					["data-start-date","开始时间","2000-01-01"],
+	      					["data-today-btn","是否显示底部按钮","false"],
+	      					["data-change-date","改变时间回调","-"]
+	      				]
+	      			}
+      			},
+      			"jsUse" : {
+      				"title" : "js调用：",
+      				"code" : [
+      					{"pre" : "$('.box').pickDate({"},
+      					{"pre" : "  type: 'day',    ","comment" : "控件类型：日"},
+                {"pre" : "  id: 'cday',   ","comment" : "指定input的id"},
+      					{"pre" : "  name: 'cday',   ","comment" : "指定input的name"},
+      					{"pre" : "  format:  ,   ","comment" : "显示格式"},
+      					{"pre" : "  fill: true,    ","comment" : "是否启用自动填充"},
+      					{"pre" : "  readonly: true,    ","comment" : "是否让输入框只读"},
+      					{"pre" : "  startDate: new Date(),   ","comment" : "开始时间"},
+      					{"pre" : "  todayBtn: true,    ","comment" : "是否显示底部按钮"},
+      					{"pre" : "  changeDate: function(){    ","comment" : "改变时间回调"},
+      					{"pre" : "    $showbox.html('已选时间：'+$('#cday').val())"},
+      					{"pre" : "  }"},
+      					{"pre" : "})"}
+      				]
+      			}
+      		}
+      	},
+      	{
+      		"title" : "月份选择：",
+      		"id" : "date-month",
+      		"href" : "date-all/dist/demo.html",
+      		"src" : "date-all/demo/ex3.png",
+      		"showAPI" : {
+      			"title" : "使用示例",
+      			"tagUse" : {
+      				"title" : "自定义标签：",
+      				"example" : "&lt;month data-id='month' data-auto-fill='true' data-format='yyyy-mm' data-fill='true' data-today-btn='true' data-change-date='changed'>&lt;/month>",
+	      			"api" : {
+	      				"thead" : ["属性","含义","默认值"],
+	      				"tbody" : [
+	      					["data-id","指定input的id","-"],
+                  ["data-name","指定input的name","-"],
+	      					["data-format","显示格式","yyyy-mm"],
+	      					["data-fill","是否启用自动填充","false"],
+	      					["data-auto-fill","是否启用输入时自动填充连接符","false"],
+	      					["data-readonly","是否让输入框只读","false"],
+	      					["data-start-date","开始时间","2000-01-01"],
+	      					["data-today-btn","是否显示底部按钮","false"],
+	      					["data-change-date","改变时间回调","-"]
+	      				]
+	      			}
+      			},
+      			"jsUse" : {
+      				"title" : "js调用：",
+      				"code" : [
+      					{"pre" : "$('.box').pickDate({"},
+      					{"pre" : "  type: 'month',    ","comment" : "控件类型：月"},
+                {"pre" : "  id: 'cmonth',   ","comment" : "指定input的id"},
+      					{"pre" : "  name: 'cmonth',   ","comment" : "指定input的name"},
+      					{"pre" : "  format:  ,   ","comment" : "显示格式"},
+      					{"pre" : "  fill: true,    ","comment" : "是否启用自动填充"},
+      					{"pre" : "  readonly: true,    ","comment" : "是否让输入框只读"},
+      					{"pre" : "  startDate: new Date(),   ","comment" : "开始时间"},
+      					{"pre" : "  todayBtn: true,    ","comment" : "是否显示底部按钮"},
+      					{"pre" : "  changeDate: function(){    ","comment" : "改变时间回调"},
+      					{"pre" : "    $showbox.html('已选时间：'+$('#cmonth').val())"},
+      					{"pre" : "  }"},
+      					{"pre" : "})"}
+      				]
+      			}
+      		}
+      	},
+      	{
+          "title" : "季度选择：",
+          "id" : "date-quarter",
+          "href" : "date-all/dist/demo.html",
+          "src" : "date-all/demo/ex4.png",
+          "showAPI" : {
+          	"title" : "使用示例",
+          	"tagUse" : {
+          		"title" : "自定义标签：",
+          		"example" : "&lt;quarter data-id='quarter' data-fill='true' data-today-btn='true' data-change-date='changed'>&lt;/quarter>",
+	         		"api" : {
+	         			"tip" : "( 注：不同于其他控件，startDate格式只能为具体年份 )",
+	         			"thead" : ["属性","含义","默认值"],
+	         			"tbody" : [
+	         				["data-id","指定input的id","-"],
+                  ["data-name","指定input的name","-"],
+	         				["data-fill","是否启用自动填充","false"],
+	         				["data-readonly","是否让输入框只读","false"],
+	         				["data-start-date","开始时间","2000"],
+	         				["data-today-btn","是否显示底部按钮","false"],
+	         				["data-change-date","改变时间回调","-"]
+	         			]
+	         		}
+          	},
+          	"jsUse" : {
+          		"title" : "js调用：",
+          		"code" : [
+          			{"pre" : "$('.box').pickDate({"},
+          			{"pre" : "  type: 'quarter',    ","comment" : "控件类型：季"},
+                {"pre" : "  id: 'quarter',   ","comment" : "指定input的id"},
+          			{"pre" : "  name: 'quarter',   ","comment" : "指定input的name"},
+          			{"pre" : "  fill: true,    ","comment" : "是否启用自动填充"},
+          			{"pre" : "  readonly: true,    ","comment" : "是否让输入框只读"},
+          			{"pre" : "  startDate: 2010,   ","comment" : "开始时间"},
+          			{"pre" : "  todayBtn: true,    ","comment" : "是否显示底部按钮"},
+          			{"pre" : "  changeDate: function(){    ","comment" : "改变时间回调"},
+          			{"pre" : "    $showbox.html('已选时间：'+$('#quarter').val())"},
+          			{"pre" : "  }"},
+          			{"pre" : "})"}
+          		]
+          	}
+          }
+      	},
+      	{
+      		"title" : "年份选择：",
+      		"id" : "date-year",
+      		"href" : "date-all/dist/demo.html",
+      		"src" : "date-all/demo/ex5.png",
+      		"showAPI" : {
+      			"title" : "使用示例",
+      			"tagUse" : {
+      				"title" : "自定义标签：",
+      				"example" : ">&lt;year data-id='year' data-format='yyyy' data-fill='true' data-today-btn='true' data-change-date='changed'>&lt;/year>",
+	      			"api" : {
+	      				"thead" : ["属性","含义","默认值"],
+	      				"tbody" : [
+	      					["data-id","指定input的id","-"],
+                  ["data-name","指定input的name","-"],
+	      					["data-format","显示格式","yyyy"],
+	      					["data-fill","是否启用自动填充","false"],
+	      					["data-readonly","是否让输入框只读","false"],
+	      					["data-start-date","开始时间","2000"],
+	      					["data-today-btn","是否显示底部按钮","false"],
+	      					["data-change-date","改变时间回调","-"]
+	      				]
+	      			}
+      			},
+      			"jsUse" : {
+      				"title" : "js调用：",
+      				"code" : [
+      					{"pre" : "$('.box').pickDate({"},
+      					{"pre" : "  type: 'year',    ","comment" : "控件类型：年"},
+                {"pre" : "  id: 'cyear',   ","comment" : "指定input的id"},
+      					{"pre" : "  name: 'cyear',   ","comment" : "指定input的name"},
+      					{"pre" : "  fill: true,    ","comment" : "是否启用自动填充"},
+      					{"pre" : "  readonly: true,    ","comment" : "是否让输入框只读"},
+      					{"pre" : "  startDate: 2010,   ","comment" : "开始时间"},
+      					{"pre" : "  todayBtn: true,    ","comment" : "是否显示底部按钮"},
+      					{"pre" : "  changeDate: function(){    ","comment" : "改变时间回调"},
+      					{"pre" : "    $showbox.html('已选时间：'+$('#cyear').val())"},
+      					{"pre" : "  }"},
+      					{"pre" : "})"}
+      				]
+      			}
+      		}
+      	},
+      	{
+      		"title" : "周选择：",
+      		"id" : "date-week",
+      		"href" : "date-all/dist/demo.html",
+      		"src" : "date-all/demo/ex6.png",
+      		"showAPI" : {
+      			"title" : "使用示例",
+      			"tagUse" : {
+      				"title" : "自定义标签：",
+      				"example" : "&lt;week data-id='week2' data-fill='true' data-readonly='true' data-change-date='changed'>&lt;/week>",
+	      			"api" : {
+	      				"thead" : ["属性","含义","默认值"],
+	      				"tbody" : [
+	      					["data-id","指定input'父元素'的id","-"],
+                  ["data-name","指定input的name","-"],
+	      					["data-fill","是否启用自动填充","false"],
+	      					["data-readonly","是否让输入框只读","false"],
+	      					["data-change-date","改变时间回调","-"]
+	      				]
+	      			}
+      			},
+      			"jsUse" : {
+      				"title" : "js调用：",
+      				"code" : [
+      					{"pre" : "$('.box').pickDate({"},
+      					{"pre" : "  type: 'week',    ","comment" : "控件类型：周"},
+                {"pre" : "  id: 'cweek',   ","comment" : "指定input的id"},
+      					{"pre" : "  name: 'cweek',   ","comment" : "指定input的name"},
+      					{"pre" : "  fill: true,    ","comment" : "是否启用自动填充"},
+      					{"pre" : "  readonly: true,    ","comment" : "是否让输入框只读"},
+      					{"pre" : "  changeDate: function(start,end,week){    ","comment" : "改变时间回调"},
+      					{"pre" : "    $showbox.html('已选时间：'+week)"},
+      					{"pre" : "  }"},
+      					{"pre" : "})"}
+      				]
+      			}
+      		}
+      	},
+      	{
+      		"title" : "日期范围：",
+      		"id" : "date-time-range",
+      		"href" : "date-all/dist/demo.html",
+      		"src" : "date-all/demo/ex7.png",
+      		"showAPI" : {
+      			"title" : "使用示例",
+      			"tagUse" : {
+      				"title" : "自定义标签：",
+      				"example" : "&lt;dayrange data-id='dayrange' data-fill='true' data-readonly='true' data-change-range='changed'>&lt;/dayrange>",
+	      			"api" : {
+	      				"thead" : ["属性","含义","默认值"],
+	      				"tbody" : [
+	      					["data-id","指定input的id","-"],
+                  ["data-name","指定input的name","-"],
+	      					["data-fill","是否启用自动填充","false"],
+	      					["data-readonly","是否让输入框只读","false"],
+	      					["data-change-date","改变时间回调","-"]
+	      				]
+	      			}
+      			},
+      			"jsUse" : {
+      				"title" : "js调用：",
+      				"code" : [
+      					{"pre" : "$('.box').pickDate({"},
+      					{"pre" : "  type: 'dayRange',    ","comment" : "控件类型：日期范围"},
+                {"pre" : "  id: 'cdayRange',   ","comment" : "指定input的id"},
+      					{"pre" : "  name: 'cdayRange',   ","comment" : "指定input的name"},
+      					{"pre" : "  fill: true,    ","comment" : "是否启用自动填充"},
+      					{"pre" : "  readonly: true,    ","comment" : "是否让输入框只读"},
+      					{"pre" : "  changeDate: function(start,end,label){    ","comment" : "改变时间回调"},
+      					{"pre" : "    $showbox.html('已选时间：'+ start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (范围:'  + label + '))"},
+      					{"pre" : "  }"},
+      					{"pre" : "})"}
+      				]
+      			}
+      		}
+      	},
+      	{
+      		"title" : "月范围选择：",
+      		"id" : "date-month-range",
+      		"href" : "date-all/dist/demo.html",
+      		"src" : "date-all/demo/ex8.png",
+      		"showAPI" : {
+      			"title" : "使用示例",
+      			"tagUse" : {
+      				"title" : "自定义标签：",
+      				"example" : "&lt;monthrange data-id='monthrange' data-auto-fill='true' data-fill='true' data-readonly='true' data-begin-id='startM' data-end-id='endM' data-today-btn='true' data-change-begin='changed' data-change-end='changed'>&lt;/monthrange>",
+	      			"api" : {
+	      				"thead" : ["属性","含义","默认值"],
+	      				"tbody" : [
+	      					["data-begin-id","指定开始月份input的id","-"],
+	      					["data-end-id","指定结束月份input的id","-"],
+                  ["data-begin-name","指定开始月份input的name","-"],
+                  ["data-end-name","指定结束月份input的name","-"],
+	      					["data-begin-class","指定开始月份div的class","-"],
+	      					["data-end-class","指定结束月份div的class","-"],
+	      					["data-auto-fill","是否启用输入时自动填充连接符","false"],
+	      					["data-fill","是否启用自动填充","false"],
+	      					["data-format","显示格式","yyyy-mm"],
+	      					["data-readonly","是否让输入框只读","false"],
+	      					["data-today-btn","是否显示底部按钮","false"],
+	      					["data-change-begin","改变开始月份回调","-"],
+	      					["data-change-end","改变结束月份回调","-"]
+	      				]
+	      			}
+      			},
+      			"jsUse" : {
+      				"title" : "js调用：",
+      				"code" : [
+      					{"pre" : "$('.box').pickDate({"},
+      					{"pre" : "  type: 'monthRange',    ","comment" : "控件类型：月范围"},
+      					{"pre" : "  beginClass: 'startime',   ","comment" : "指定开始时间div的class"},
+      					{"pre" : "  beginId: 'startMonth',   ","comment" : "指定开始时间input的id"},
+                {"pre" : "  beginName: 'startime',   ","comment" : "指定开始时间input的name"},
+                {"pre" : "  endName: 'startMonth',   ","comment" : "指定结束时间input的name"},
+      					{"pre" : "  endClass: 'endtime',   ","comment" : "指定结束时间div的class"},
+      					{"pre" : "  endId: 'endMonth',   ","comment" : "指定结束时间input的id"},
+      					{"pre" : "  fill: true,    ","comment" : "是否启用自动填充"},
+      					{"pre" : "  readonly: true,    ","comment" : "是否让输入框只读"},
+      					{"pre" : "  changeBegin: function(start,end,label){    ","comment" : "改变开始时间回调"},
+      					{"pre" : "    $showbox.html('已选时间：'+$('#startMonth').val())"},
+      					{"pre" : "  },"},
+      					{"pre" : "  changeEnd: function(start,end,label){    ","comment" : "改变结束时间回调"},
+      					{"pre" : "    $showbox.html('已选时间：'+$('#endMonth').val())"},
+      					{"pre" : "  }"},
+      					{"pre" : "})"}
+      				]
+      			}
+      		}
+      	}      	
+      ]
+		},
+    {
+      "id": "helper",
+      "head": "帮助类",
+      "firstInfo" : {
+        "title" : "基本介绍：",
+        "description" : "本系列组件为下拉选择、弹框、自定义表格等帮助类控件，自定义表格与数据表格组件通用",
+        "tip" : "注：单击图片跳转到对应demo页面",
+        "quote" : "依赖文件引入：",
+        "dependencies" : {
+          "css" : [
+            "&lt;link href='../bootstrap-3.3.7-dist/css/bootstrap.css' rel='stylesheet'>",
+            "&lt;link rel='stylesheet' type='text/css' href='help-all-min.css'>"
+          ],
+          "js" : [
+            "&lt;script src='../bootstrap-3.3.7-dist/jquery-3.3.1.min.js'>&lt;/script>",
+            "&lt;script src='../js/bootstrap.min.js'>&lt;/script>",
+            "&lt;script src='help-all.js'>&lt;/script>"
+          ]
+        }
+      },
+      "infoList": [
+        {
+          "title" : "下拉式：",
+          "id" : "help-select",
+          "href" : "help-type-all/dist/demo.html",
+          "src" : "help-type-all/demo/ex.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义标签：",
+              "example" : "&lt;sel data-id='account' data-name='account' data-width='220'  data-placeholder='请选择' data-url='http://127.0.0.1?code=ACCOUNT'>&lt;/sel>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-id","指定select的id","-"],
+                  ["data-name","name: data.name,","-"],
+                  ["data-placeholder","占位符","-"],
+                  ["data-width","选择框宽度","-"],
+                  ["data-auto-width","是否让下拉框宽度自适应内容","false"],
+                  ["data-max-item","最多可选项数量","-"],
+                  ["data-multiple","是否多选","false"],
+                  ["data-code","使用统一url的参数部分(跟url选其一)","-"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('.box').helpOut({"},
+                {"pre" : "  type: 'drop',    ","comment" : "控件类型：下拉式"},
+                {"pre" : "  name: 'account',   ","comment" : "name: data.name"},
+                {"pre" : "  url: 'http://127.0.0.1?code=ACCOUNT',   ","comment" : "获取数据的接口（返回json格式)"},
+                {"pre" : "  id:  'account',   ","comment" : "指定select的id"},
+                {"pre" : "  width: 220,    ","comment" : "选择框宽度"},
+                {"pre" : "  placeholder: '',    ","comment" : "占位符"},
+                {"pre" : "  multiple: true,   ","comment" : "是否多选"},
+                {"pre" : "  maxItem: 3,    ","comment" : "最多可选项数量"},
+                {"pre" : "  autoWidth: false","comment" : "是否让下拉框宽度自适应内容"},
+                {"pre" : "  code: 'ACCOUNT' ","comment" : "使用统一url的参数部分(跟url选其一)"} ,
+                {"pre" : "})"}               
+              ]
+            }
+          }
+        },
+        {
+          "title" : "弹框式：",
+          "id" : "help-pop",
+          "href" : "help-type-all/dist/demo.html",
+          "src" : "help-type-all/demo/ex2.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义标签：",
+              "example" : "&lt;pop data-placeholder='点我从右下ヾ(ﾟдﾟ)ﾉ  ' data-title='' data-content='popHtml'  data-width=''>&lt;/pop>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-placeholder","占位符","-"],
+                  ["data-width","选择框宽度","-"],
+                  ["data-title","弹框标题","-"],
+                  ["data-content","弹框填充内容(通过$.formatter__[popHtml]方法返回HTML字符串)","-"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('.box').helpOut({"},
+                {"pre" : "  type: 'popup',    ","comment" : "控件类型：弹出式"},
+                {"pre" : "  width: 220,    ","comment" : "选择框宽度"},
+                {"pre" : "  placeholder: '',    ","comment" : "占位符"},
+                {"pre" : "  content: 'function(){return ['<div><p></p></div>'].join('')}' ","comment" : "弹框填充内容,返回HTML字符串)"},
+                {"pre" : "})"}
+              ]
+            }
+          }
+        },
+        {
+          "title" : "自定义：(本组件即可作自定义列表也可作数据表格使用)",
+          "id" : "help-definite",
+          "href" : "help-type-all/dist/demo.html",
+          "src" : "help-type-all/demo/ex3.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义标签：",
+              "example" : "&lt;datagrid data-url='http://127.0.0.1?code=grid' data-id='dg' data-click-to-select='true' data-height='400' data-class='datagrid' data-code='GRID' data-pagination=true data-page-size='20' data-side-pagination='client' data-sortable=true data-on-load-success='btns' data-click-row='expand' data-click-cell='tCell' data-detail-view='' data-detail-formatter=''  data-fixed-columns='' data-fixed-num='' >&lt;/datagrid>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-url","获取生成表格数据配置的url，与code二选一","-"],
+                  ["data-id","生成表格的id","-"],
+                  ["data-click-to-select","是否点击选中行","false"],
+                  ["data-height","表格高度","-"],
+                  ["data-class","为表格添加的类名","-"],
+                  ["data-striped","是否隔行加亮","false"],
+                  ["data-code","使用统一url的参数'code'值，与url二选一","-"],
+                  ["data-page-size","表格一页显示多少条数据","10"],
+                  ["data-pagination","是否显示分页","false"],
+                  ["data-side-pagination","客户端or服务端分页","client"],
+                  ["data-page-list","可供选择的每页的行数","[10, 25, 50, 100]"],
+                  ["data-sortable","是否启用排序","false"],
+                  ["data-on-load-success","表格加载完成事件(需定义$.formatter__对象上的方法)","-"],
+                  ["data-click-row","单击行事件(需定义$.formatter__对象上的方法)","-"],
+                  ["data-click-cell","单击单元格事件(需定义$.formatter__对象上的方法)","-"],
+                  ["data-detail-view","是否显示父子表","false"],
+                  ["data-detail-formatter","子表内容填充(需定义$.formatter__对象上的方法)","-"],
+                  ["data-fixed-columns","是否启用固定列","false"],
+                  ["data-fixed-num","固定列数量","-"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('.box').helpOut({"},
+                {"pre" : "  type: 'grid',    ","comment" : "控件类型：自定义表格"},
+                {"pre" : "  id: 'dg',   ","comment" : "指定表格的id"},
+                {"pre" : "  url:  ,   ","comment" : "获取生成表格数据配置的url，与code二选一"},
+                {"pre" : "  code:  ,    ","comment" : "使用统一url的参数'code'值，与url二选一"},
+                {"pre" : "  clickToSelect: true,    ","comment" : "是否点击选中行"},
+                {"pre" : "  detailView: ,   ","comment" : "是否显示父子表"},
+                {"pre" : "  detailFormatter:  ,    ","comment" : "子表内容填充(需定义$.formatter__对象上的方法)"},
+                {"pre" : "  height: ","comment" : "表格高度"},
+                {"pre" : "  toolBar: .toolbar","comment" : "工具栏对象，为css选择器"},
+                {"pre" : "  pagination: true","comment" : "是否显示分页"},
+                {"pre" : "  pageSize: 20","comment" : "表格一页显示多少条数据"},
+                {"pre" : "  search: true","comment" : "是否提供搜索"},
+                {"pre" : "  striped: true","comment" : "是否隔行加亮"},
+                {"pre" : "  sortable: true","comment" : "是否启用排序"},
+                {"pre" : "  sidePagination: 'server'","comment" : "客户端or服务端分页"},
+                {"pre" : "  clickRow: function(){}","comment" : "单击行事件"},
+                {"pre" : "  clickCell: function(){}","comment" : "单击单元格事件"},
+                {"pre" : "  onLoadSuccess: function(){}","comment" : "表格加载完成事件"},
+                {"pre" : "  fixedColumns: ","comment" : "单击单元格事件"},
+                {"pre" : "  fixedNum: ","comment" : "固定列数量"},
+                {"pre" : "})"}
+              ]
+            }
+          }
+        }      
+      ]
+    },
+    {
+      "id": "tree",
+      "head": "树形类",
+      "firstInfo" : {
+        "title" : "基本介绍：",
+        "description" : "以二级或三层树形结构展示a-b-c关系",
+        "tip" : "注：单击图片跳转到对应demo页面",
+        "quote" : "依赖文件引入：",
+        "dependencies" : {
+          "css" : [
+            "&lt;link href='../bootstrap-3.3.7-dist/css/bootstrap.css' rel='stylesheet'>",
+            "&lt;link rel='stylesheet' type='text/css' href='help-all-min.css'>"
+          ],
+          "js" : [
+            "&lt;script src='../bootstrap-3.3.7-dist/jquery-3.3.1.min.js'>&lt;/script>",
+            "&lt;script src='../js/bootstrap.min.js'>&lt;/script>",
+            "&lt;script src='help-all-min.js'>&lt;/script>"
+          ]
+        }
+      },
+      "infoList": [
+        {
+          "title" : "树形选择",
+          "id" : "tree-sel",
+          "href" : "help-type-all/dist/demo-tree-index.html",
+          "src" : "help-type-all/demo/ex4.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义标签：",
+              "example" : "&lt;tree data-id='choose-group' data-placeholder='可多选' data-url='http://127.0.0.1:8888/?code=' data-which='test-group' data-multiple='true' data-tags='true' data-onselected='selected' data-onunselected='unselected'>&lt;/tree>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-id","指定填充树形的div的id","-"],
+                  ["data-multiple","是否多选","false"],
+                  ["data-placeholder","占位符","-"],
+                  ["data-which","何种类型(test-group为aa-bb)","-"],
+                  ["data-tags","是否显示右边子项数量","false"],
+                  ["data-disableScroll","是否禁用‘返回顶部’按钮","false"],
+                  ["data-onselected","选中项事件(需定义$.treeViewer__对应的方法)","-"],
+                  ["data-onunselected","取消选中项事件(需定义$.treeViewer__对应的方法)","-"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('.box').treeViewer({"},
+                {"pre" : "  type: 'tree',    ","comment" : "控件类型：下拉式"},
+                {"pre" : "  url: 'http://127.0.0.1?code=test',   ","comment" : "获取数据的接口，根据参数code返回对应数据（返回json格式)。test-aa，GROUP-bb，scaffold-cc"},
+                {"pre" : "  which:  'test-group',   ","comment" : "何种类型(test-group为aa-bb，(group-hotel为bb-cc)，(u-g-h为a-b-c))"},
+                {"pre" : "  id:  'tree',   ","comment" : "指定填充树形的div的id"},
+                {"pre" : "  placeholder: '',    ","comment" : "占位符"},
+                {"pre" : "  multiple: true,   ","comment" : "是否多选"},
+                {"pre" : "  tags: true,    ","comment" : "是否显示右边子项数量"},
+                {"pre" : "  disableScroll: false","comment" : "是否禁用‘返回顶部’按钮"},
+                {"pre" : "  onselected: function(){} ","comment" : "选中项事件"},                
+                {"pre" : "  onunselected: function(){} ","comment" : "取消选中项事件"},
+                {"pre" : "})"}       
+              ]
+            }
+          }
+        }    
+      ]
+    },
+    {
+      "id": "area",
+      "head": "地域级联",
+      "firstInfo" : {
+        "title" : "基本介绍：",
+        "description" : "以横向级联结构展示地域-省份-城市关系",
+        "tip" : "注：单击图片跳转到对应demo页面",
+        "quote" : "依赖文件引入：",
+        "dependencies" : {
+          "css" : [
+            "&lt;link href='../bootstrap-3.3.7-dist/css/bootstrap.css' rel='stylesheet'>",
+            "&lt;link rel='stylesheet' type='text/css' href='help-all-min.css'>"
+          ],
+          "js" : [
+            "&lt;script src='../bootstrap-3.3.7-dist/jquery-3.3.1.min.js'>&lt;/script>",
+            "&lt;script src='../js/bootstrap.min.js'>&lt;/script>",
+            "&lt;script src='help-all-min.js'>&lt;/script>"
+          ]
+        }
+      },
+      "infoList": [
+        {
+          "title" : "地域-省份-城市级联",
+          "id" : "area-sel",
+          "href" : "help-type-all/dist/demo-tree-index.html",
+          "src" : "help-type-all/demo/ex5.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义标签：",
+              "example" : "&lt;areatree data-type='area' data-url='http://127.0.0.1?code=' data-placeholder='请选择'>&lt;/areatree>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-id","指定input的id","-"],
+                  ["data-url","指定获取地域-省份-城市信息的url","-"],
+                  ["data-placeholder","占位符","-"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('.box').areaTree({"},
+                {"pre" : "  id: 'area',   ","comment" : "指定input的id，方便获取值"},
+                {"pre" : "  url:  'http://127.0.0.1?code=',   ","comment" : "指定获取地域-省份-城市信息的url"},
+                {"pre" : "  placeholder: '',    ","comment" : "占位符"},
+                {"pre" : "})"} 
+              ]
+            }
+          }
+        }    
+      ]
+    },
+    {
+      "id": "others",
+      "head": "其它",
+      "firstInfo" : {
+        "title" : "基本介绍：",
+        "description" : "一些小小孤独的控件们",
+        "tip" : "注：单击图片跳转到对应demo页面",
+        "quote" : "依赖文件引入：",
+        "dependencies" : {
+          "css" : [
+            "&lt;link href='../bootstrap-3.3.7-dist/css/bootstrap.css' rel='stylesheet'>",
+            "&lt;link rel='stylesheet' type='text/css' href='tools-min.css'>"
+          ],
+          "js" : [
+            "&lt;script src='../bootstrap-3.3.7-dist/jquery-3.3.1.min.js'>&lt;/script>",
+            "&lt;script src='../js/bootstrap.min.js'>&lt;/script>",
+            "&lt;script src='tools-min.js'>&lt;/script>"
+          ]
+        }
+      },
+      "infoList": [
+        {
+          "title" : "悬浮展示tip",
+          "id" : "tip",
+          "href" : "tools-all/dist/demo.html",
+          "src" : "tools-all/demo/ex.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义属性：",
+              "example" : "&lt;a data-tip data-text='' data-placement='top' data-html='tables'>&lt;/a>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-id","指定tip元素的id","-"],
+                  ["data-tip","原生dom上开启tip显示","-"],
+                  ["data-text","tip展示文本内容","-"],
+                  ["data-placement","tip展示位置","bottom"],
+                  ["data-html","tip填充HTML字符(通过$.tools__.tips对象定义方法返回)","-"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('[data-tip]').tip({"},
+                {"pre" : "  id: 'area',   ","comment" : "指定tip元素的id"},
+                {"pre" : "  placement:  'tip展示位置',   ","comment" : "bottom"},
+                {"pre" : "  text: '',    ","comment" : "tip展示文本内容"},
+                {"pre" : "  html: function(){//return },    ","comment" : "ip填充HTML字符，通过该方法返回"},
+                {"pre" : "})"}
+              ]
+            }
+          }
+        },
+        {
+          "title" : "alert弹窗",
+          "id" : "alert",
+          "href" : "tools-all/dist/demo.html",
+          "src" : "tools-all/demo/ex2.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义标签：",
+              "example" : "&lt;alert data-title='' data-html='fillHtml' data-onconfirm='confirm' data-oncancel='cancel'>&lt;/alert>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-title","弹窗标题","-"],
+                  ["data-html","弹窗填充HTML字符(通过$.tools__.alert对象定义方法返回)","-"],
+                  ["data-onconfirm","点击确定按钮事件，定义在$.tools__.alert对象上","-"],
+                  ["data-oncancel","点击取消按钮事件，定义在$.tools__.alert对象上","-"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('.box').alert({"},
+                {"pre" : "  title: ' ',   ","comment" : "弹窗标题"},
+                {"pre" : "  html:  function(){//return },   ","comment" : "弹窗填充HTML字符，通过该方法返回"},
+                {"pre" : "  onconfirm: function(){},    ","comment" : "点击确定按钮事件，定义在"},
+                {"pre" : "  oncancel: function(){},    ","comment" : "点击取消按钮事件，定义在"},
+                {"pre" : "})"}
+              ]
+            }
+          }
+        },
+        {
+          "title" : "switch开关",
+          "id" : "switch",
+          "href" : "tools-all/dist/demo.html",
+          "src" : "tools-all/demo/ex3.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义标签：",
+              "example" : "&lt;switch data-ontext='on' data-offtext='off' data-onon='' data-onoff='' data-disabled=true data-square=true>&lt;/switch>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-on","默认状态","false(关闭状态)"],
+                  ["data-ontext","开启显示文本","启用"],
+                  ["data-offtext","关闭显示文本","停用"],
+                  ["data-onon","开启事件，定义在$.tools__.switch","-"],
+                  ["data-onoff","关闭事件，定义在$.tools__.switch对象上","-"],
+                  ["data-disabled","是否禁用","false"],
+                  ["data-square","是否显示方形开关","false"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('.box').switch({"},
+                {"pre" : "  disabled: true,   ","comment" : "是否禁用"},
+                {"pre" : "  on:  true,   ","comment" : "默认状态"},
+                {"pre" : "  ontext: '',    ","comment" : "开启显示文本"},
+                {"pre" : "  offtext: '',    ","comment" : "关闭显示文本"},
+                {"pre" : "  onon: function(){},    ","comment" : "开启事件"},
+                {"pre" : "  onoff: function(){},    ","comment" : "关闭事件"},
+                {"pre" : "  square: false,    ","comment" : "是否显示方形开关"},
+                {"pre" : "})"}
+              ]
+            }
+          }
+        },
+        {
+          "title" : "loader加载",
+          "id" : "loader",
+          "href" : "tools-all/dist/demo.html",
+          "src" : "tools-all/demo/ex4.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义标签：",
+              "example" : "&lt;loader data-target='#res2' data-text='' data-speed= data-text-offset= data-color='' data-bar-color='lightcyan' data-particles-color='lightcyan' data-shadow-color='' data-shadow-offset-x= data-shadow-offset-y= data-shadow-blur=>&lt;/loader>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-target","使用加载效果的元素选择器","body"],
+                  ["data-text","加载时显示文本","加载中，请稍等！"],
+                  ["data-font-size","文本字体大小","24"],
+                  ["data-loaded-text","加载完成显示文本","加载完成！"],
+                  ["data-speed","加载效果速度","0.6"],
+                  ["data-text-offset","文本距离进度条垂直位移","文本字体大小"],
+                  ["data-color","文本颜色","#fff"],
+                  ["data-bar-color","进度条颜色","-"],
+                  ["data-particles-color","颗粒颜色","-"],
+                  ["data-shadow-color","文本阴影颜色","rgba(220,220,220,.5)"],
+                  ["data-shadow-offset-x","文本阴影水平方向位移","2"],
+                  ["data-shadow-offset-y","文本阴影垂直方向位移","2"],
+                  ["data-shadow-blur","文本阴影扩散","8"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('.box').loader({"},
+                {"pre" : "  target: '#res2',   ","comment" : "使用加载效果的元素选择器"},
+                {"pre" : "  text:  '',   ","comment" : "加载时显示文本"},
+                {"pre" : "  loadedText: '',    ","comment" : "加载完成显示文本"},
+                {"pre" : "  textOffset: 4,    ","comment" : "文本距离进度条垂直位移"},
+                {"pre" : "  fontSize: 18,    ","comment" : "文本字体大小"},
+                {"pre" : "  color: '',    ","comment" : "文本颜色"},
+                {"pre" : "  barColor: '',    ","comment" : "进度条颜色"},
+                {"pre" : "  particlesColor: '',    ","comment" : "颗粒颜色"},
+                {"pre" : "  speed: '',    ","comment" : "加载效果速度"},
+                {"pre" : "  shadowColor: '',    ","comment" : "文本阴影颜色"},
+                {"pre" : "  shadowOffsetX: 5,    ","comment" : "文本阴影水平方向位移"},
+                {"pre" : "  shadowOffsetY: 5,    ","comment" : "文本阴影垂直方向位移"},
+                {"pre" : "  shadowBlur: 12,    ","comment" : "文本阴影扩散"},
+                {"pre" : "})"}
+              ]
+            }
+          }
+        },
+        {
+          "title" : "input校验",
+          "id" : "validater",
+          "href" : "tools-all/dist/demo.html",
+          "src" : "tools-all/demo/ex5.png",
+          "showAPI" : {
+            "title" : "使用示例",
+            "tagUse" : {
+              "title" : "自定义属性：",
+              "example" : "&lt;input class='form-control' data-required data-type='money' data-errortext=''>",
+              "api" : {
+                "thead" : ["属性","含义","默认值"],
+                "tbody" : [
+                  ["data-required","在input元素上启用校验",""],
+                  ["data-type","校验类型(提供number、money及自定义类型)","需输入内容"],
+                  ["data-errortext","验证失败显示提示文本","不可为空"]
+                ]
+              }
+            },
+            "jsUse" : {
+              "title" : "js调用：",
+              "code" : [
+                {"pre" : "$('input[data-required]').requiredInput({"},
+                {"pre" : "  type: 'number',   ","comment" : "校验类型: number(数字). 其他内置类型money:金额类型，默认需要输入内容，也可赋值正则表达式，如“/\\d{0,2}/”从而自定义验证类型"},               
+                {"pre" : "  errortext: '请输入纯数字！', ","comment" : "验证失败显示提示文本"},
+                {"pre" : "})"}
+              ]
+            }
+          }
+        }
+      ]
+    }
+	]         
+}

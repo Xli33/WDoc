@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0"
+    />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="bootstrap-3.3.7-dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-table.css" />
+    <link rel="stylesheet" type="text/css" href="css/tools.css" />
+    <style>
+      .box {
+        text-align: center;
+        margin-top: 4rem;
+        margin-bottom: 1rem;
+      }
+
+      .tooltip-content {
+        white-space: nowrap;
+      }
+
+      .box > span {
+        margin: 0 3rem;
+      }
+
+      .col-md-12,
+      .col-md-3,
+      .col-md-4 {
+        text-align: center;
+      }
+
+      .mt1 {
+        margin-top: 1rem;
+      }
+
+      [id^="res"] {
+        background-color: lightcoral;
+        font-size: 1.8rem;
+        overflow: hidden;
+        padding: 1rem;
+        position: relative;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="overflow: hidden; padding-top: 2rem">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              data-required
+              name=""
+              data-errortext=""
+            />
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              data-required
+              name=""
+              data-type="number"
+              data-errortext=""
+            />
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              data-required
+              name=""
+              data-type="money"
+              data-errortext="请输入金额！"
+            />
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              data-required
+              name=""
+              data-type=" /^[a-z]{0,3}$/ "
+              data-errortext="请输入最多三个小写字母！"
+            />
+          </div>
+        </div>
+        <div class="row mt1">
+          <div class="col-md-3 col-md-offset-5">
+            <div class="list-group">
+              <a
+                href="#"
+                class="list-group-item active"
+                data-tip
+                data-text=""
+                data-placement="top"
+                >Cras justo odio</a
+              >
+              <a
+                href="#"
+                class="list-group-item"
+                data-tip
+                data-text="this is for test"
+                data-placement="left"
+                >Dapibus ac facilisis in</a
+              >
+              <a
+                href="#"
+                class="list-group-item"
+                data-tip
+                data-text="nothing"
+                data-placement="right"
+                >Morbi leo risus</a
+              >
+              <a
+                href="#"
+                class="list-group-item"
+                data-tip
+                data-placement="bottom"
+                data-html="createTable2"
+                >Porta ac consectetur ac</a
+              >
+              <table id="b"></table>
+              <a
+                href="#"
+                class="list-group-item"
+                data-tip
+                data-placement="bottom"
+                data-html="createTable"
+                >Vestibulum at eros</a
+              >
+              <table id="a"></table>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div id="tip" class="form-control">
+              <p>点击弹出提示</p>
+              <alert data-title="" data-html="fillHtml"></alert>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-control">
+              <p>点击弹出选择</p>
+              <alert data-title="选择" data-html="fillHtml1"></alert>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-control">
+              <p>点击弹出说明</p>
+              <alert
+                data-title="说明"
+                data-html="fillHtml2"
+                data-onconfirm="confirm"
+                data-oncancel="cancel"
+              >
+              </alert>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt1">
+          <div class="col-md-3">
+            <switch
+              data-ontext=""
+              data-offtext=""
+              data-on="true"
+              data-onon=""
+              data-onoff=""
+              data-disabled="true"
+            >
+            </switch>
+          </div>
+          <div class="col-md-3">
+            <switch
+              data-ontext=""
+              data-offtext=""
+              data-on="true"
+              data-onon="onon1"
+              data-onoff="onoff1"
+              data-square="true"
+            ></switch>
+          </div>
+          <div class="col-md-3">
+            <switch
+              data-ontext="on"
+              data-offtext="off"
+              data-onon="onon1"
+              data-onoff="onoff1"
+            ></switch>
+          </div>
+          <div class="col-md-3">
+            <switch
+              data-ontext="on"
+              data-offtext="off"
+              data-onon=""
+              data-onoff=""
+              data-disabled="true"
+              data-square="true"
+            ></switch>
+          </div>
+          <div id="res" class="col-md-12 mt1"></div>
+          <div class="col-md-12 mt1">
+            <div class="col-md-6">
+              <button id="load-btn" class="btn btn-default">
+                嫑点我(*/∇＼*)
+                <loader
+                  data-id="load1"
+                  data-target="#res2"
+                  data-text="淘气ヾ(=･ω･=)o"
+                  data-speed=""
+                  data-text-offset=""
+                  data-color=""
+                  data-bar-color="lightcyan"
+                  data-particles-color="lightcyan"
+                  data-shadow-color=""
+                  data-shadow-offset-x=""
+                  data-shadow-offset-y=""
+                  data-shadow-blur=""
+                ></loader>
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button id="load-btn1" class="btn btn-default">
+                （*゜Д゜）σ凸←自爆按钮
+                <loader
+                  data-id="load2"
+                  data-target="#res3"
+                  data-text="真的，不解释(╯°Д°)╯︵┻━┻"
+                  data-speed=""
+                  data-text-offset="24"
+                  data-color=""
+                  data-bar-color="lightcyan"
+                  data-particles-color="lightcyan"
+                  data-shadow-color=""
+                  data-shadow-offset-x=""
+                  data-shadow-offset-y=""
+                  data-shadow-blur=""
+                ></loader>
+              </button>
+            </div>
+          </div>
+          <div id="res1" class="col-md-12 mt1">
+            <h2>点我吖(｀・ω・´)</h2>
+            <loader
+              data-id="load3"
+              data-target=""
+              data-text="加载中，请稍后再拨 !（づ￣3￣）づ╭～"
+              data-loaded-text="完啦完啦，溜了溜了─=≡Σ(((つ•̀ω•́)つ"
+              data-speed="0.4"
+              data-font-size="32"
+              data-text-offset="30"
+              data-color=""
+              data-bar-color="#56cef3"
+              data-particles-color="#56cef3"
+              data-shadow-color="rgba(255,255,255,.45)"
+              data-shadow-offset-x="4"
+              data-shadow-offset-y="4"
+              data-shadow-blur="12"
+            ></loader>
+          </div>
+          <div id="res2" class="col-md-12 mt1">
+            <h2>会有啥(|| ﾟДﾟ)</h2>
+          </div>
+          <div id="res3" class="col-md-12 mt1">
+            <h1>(っ•̀ω•́)っ✎⁾⁾ 我爱学习</h1>
+            <h1>…φ(๑˃∀˂๑)♪ 学习是我的全部</h1>
+            <h1>٩꒰▽ ꒱۶⁼³₌₃ 学习去咯</h1>
+            <h1>精神！(((o(*ﾟ▽ﾟ*)o)))♡</h1>
+            <h1>被掏空(◎_◎;)</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-docs-section" style="display: none">
+        <h1 id="grid" class="page-header">
+          <a
+            class="anchorjs-link"
+            href="#grid"
+            aria-label="Anchor link for: grid"
+            data-anchorjs-icon=""
+            style="
+              font-family: anchorjs-icons;
+              font-style: normal;
+              font-variant: normal;
+              font-weight: normal;
+              line-height: inherit;
+              position: absolute;
+              margin-left: -1em;
+              padding-right: 0.5em;
+            "
+          ></a
+          >栅格系统
+        </h1>
+        <p class="lead">
+          Bootstrap
+          提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列。它包含了易于使用的<a
+            href="#grid-example-basic"
+            >预定义类</a
+          >，还有强大的<a href="#grid-less">mixin 用于生成更具语义的布局</a>。
+        </p>
+        <h2 id="grid-intro">
+          <a
+            class="anchorjs-link"
+            href="#grid-intro"
+            aria-label="Anchor link for: grid intro"
+            data-anchorjs-icon=""
+            style="
+              font-family: anchorjs-icons;
+              font-style: normal;
+              font-variant: normal;
+              font-weight: normal;
+              line-height: inherit;
+              position: absolute;
+              margin-left: -1em;
+              padding-right: 0.5em;
+            "
+          ></a
+          >简介
+        </h2>
+        <p>
+          栅格系统用于通过一系列的行（row）与列（column）的组合来创建页面布局，你的内容就可以放入这些创建好的布局中。下面就介绍一下
+          Bootstrap 栅格系统的工作原理：
+        </p>
+        <ul>
+          <li>
+            “行（row）”必须包含在 <code>.container</code> （固定宽度）或
+            <code>.container-fluid</code> （100%
+            宽度）中，以便为其赋予合适的排列（aligment）和内补（padding）。
+          </li>
+          <li>通过“行（row）”在水平方向创建一组“列（column）”。</li>
+          <li>
+            你的内容应当放置于“列（column）”内，并且，只有“列（column）”可以作为行（row）”的直接子元素。
+          </li>
+          <li>
+            类似 <code>.row</code> 和
+            <code>.col-xs-4</code>
+            这种预定义的类，可以用来快速创建栅格布局。Bootstrap 源码中定义的
+            mixin 也可以用来创建语义化的布局。
+          </li>
+          <li>
+            通过为“列（column）”设置
+            <code>padding</code>
+            属性，从而创建列与列之间的间隔（gutter）。通过为
+            <code>.row</code> 元素设置负值 <code>margin</code> 从而抵消掉为
+            <code>.container</code> 元素设置的
+            <code>padding</code
+            >，也就间接为“行（row）”所包含的“列（column）”抵消掉了<code>padding</code>。
+          </li>
+          <li>
+            负值的
+            margin就是下面的示例为什么是向外突出的原因。在栅格列中的内容排成一行。
+          </li>
+          <li>
+            栅格系统中的列是通过指定1到12的值来表示其跨越的范围。例如，三个等宽的列可以使用三个
+            <code>.col-xs-4</code> 来创建。
+          </li>
+          <li>
+            如果一“行（row）”中包含了的“列（column）”大于
+            12，多余的“列（column）”所在的元素将被作为一个整体另起一行排列。
+          </li>
+          <li>
+            栅格类适用于与屏幕宽度大于或等于分界点大小的设备 ，
+            并且针对小屏幕设备覆盖栅格类。 因此，在元素上应用任何
+            <code>.col-md-*</code>
+            栅格类适用于与屏幕宽度大于或等于分界点大小的设备 ，
+            并且针对小屏幕设备覆盖栅格类。 因此，在元素上应用任何
+            <code>.col-lg-*</code> 不存在， 也影响大屏幕设备。
+          </li>
+        </ul>
+        <p>通过研究后面的实例，可以将这些原理应用到你的代码中。</p>
+        <h2 id="grid-media-queries">
+          <a
+            class="anchorjs-link"
+            href="#grid-media-queries"
+            aria-label="Anchor link for: grid media queries"
+            data-anchorjs-icon=""
+            style="
+              font-family: anchorjs-icons;
+              font-style: normal;
+              font-variant: normal;
+              font-weight: normal;
+              line-height: inherit;
+              position: absolute;
+              margin-left: -1em;
+              padding-right: 0.5em;
+            "
+          ></a
+          >媒体查询
+        </h2>
+        <p>
+          在栅格系统中，我们在 Less 文件中使用以下媒体查询（media
+          query）来创建关键的分界点阈值。
+        </p>
+        <div class="zero-clipboard">
+          <span class="btn-clipboard">Copy</span>
+        </div>
+        <figure class="highlight">
+          <pre>
+									<code class="language-scss" data-lang="scss">
+										<span class="cm">/* 超小屏幕（手机，小于 768px） */</span>
+										<span class="cm">/* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 Bootstrap 是移动设备优先的吗？） */</span>
+										<span class="cm">/* 小屏幕（平板，大于等于 768px） */</span>
+										<span class="k">@media</span>
+										<span class="p">(</span>
+										<span class="n">min-width</span>
+										<span class="o">:</span>
+										<span class="o">@</span>
+										<span class="n">screen-sm-min</span>
+										<span class="p">)</span>
+										<span class="p">{</span>
+										<span class="nc">...</span>
+										<span class="p">}</span>
+										<span class="cm">/* 中等屏幕（桌面显示器，大于等于 992px） */</span>
+										<span class="k">@media</span>
+										<span class="p">(</span>
+										<span class="n">min-width</span>
+										<span class="o">:</span>
+										<span class="o">@</span>
+										<span class="n">screen-md-min</span>
+										<span class="p">)</span>
+										<span class="p">{</span>
+										<span class="nc">...</span>
+										<span class="p">}</span>
+										<span class="cm">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span>
+										<span class="k">@media</span>
+										<span class="p">(</span>
+										<span class="n">min-width</span>
+										<span class="o">:</span>
+										<span class="o">@</span>
+										<span class="n">screen-lg-min</span>
+										<span class="p">)</span>
+										<span class="p">{</span>
+										<span class="nc">...</span>
+										<span class="p">}</span>
+									</code>
+								</pre>
+        </figure>
+      </div>
+    </div>
+
+    <script src="bootstrap-3.3.7-dist/jquery-3.3.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table.js"></script>
+    <script src="js/canvasProgress__.js"></script>
+    <script src="js/tools.js"></script>
+    <script>
+      var initTable = function (table) {
+        return $(table).bootstrapTable({
+          // height: 320,
+          // showColumns: true,
+          columns: [
+            {
+              checkbox: true
+            },
+            {
+              field: "test",
+              title: "test",
+              width: 180,
+              align: "left",
+              sortable: "true",
+              formatter: "operateFormatter"
+            },
+            {
+              field: "testA",
+              title: "testA",
+              width: 150,
+              align: "left"
+            },
+            {
+              field: "testB",
+              title: "testB",
+              width: 100,
+              align: "left",
+              formatter: "func"
+            },
+            {
+              field: "testC",
+              title: "testC",
+              width: 100,
+              align: "left"
+            },
+            {
+              field: "testD",
+              title: "testD",
+              width: 100,
+              align: "right"
+            }
+          ],
+          data: [
+            {
+              id: 2,
+              testA: "qqqq",
+              testB: "001",
+              testC: "0"
+            },
+            {
+              id: 3,
+              testA: "红红火火",
+              testB: "01",
+              testC: "002"
+            },
+            {
+              id: 5,
+              testA: "恍恍惚惚",
+              testB: "01",
+              testC: "001"
+            }
+          ]
+        });
+      };
+      initTable("#ta");
+
+      var $res = $("#res1"),
+        $res2 = $("#res2"),
+        $res3 = $("#res3");
+
+      $.tools__ = {
+        tips: {
+          createTable: function () {
+            return initTable("#a").parent().parent();
+          },
+          createTable2: function () {
+            return initTable("#b").parent().parent();
+          }
+        },
+        alert: {
+          fillHtml: function () {
+            var bs = $(".bs-docs-section").clone().show();
+            $(".bs-docs-section").remove();
+            return bs;
+          },
+          fillHtml1: function () {
+            return (
+              "<h1>确定一定以及肯定？？？？</h1>" +
+              '<p>熬夜加班(/"≡ _ ≡)/~┴┴</p>' +
+              "<p>_(´ཀ`」∠)_加班</p>" +
+              "<p>⭐凌晨三点╮（￣﹏￣）╭</p>" +
+              "<p>⭐(っ ̯ -｡) 眼快瞎了</p>" +
+              "<p>熬夜成瘾(,,•﹏•,,)</p>" +
+              "<p>(:3_ヽ)_写作业</p>" +
+              "<p>被掏空(◎_◎;)</p>" +
+              "<p>精神！(((o(*ﾟ▽ﾟ*)o)))</p>" +
+              "<p>♡(っ•̀ω•́)っ✎⁾⁾ 我爱学习</p>" +
+              "<p>(:3_ヽ)_写作业</p>"
+            );
+          },
+          fillHtml2: function () {
+            return $(".bs-docs-section").children("p").clone().show();
+          },
+          confirm: function () {
+            alert("点了确定");
+          },
+          cancel: function () {
+            alert("点了取消");
+          }
+        },
+        switch: {
+          onon1: function (a) {
+            $("#res").html("现在状态是：" + a);
+            setTimeout(function () {
+              $("#load-btn").trigger("click.loader");
+              $("#load-btn1").trigger("click.loader");
+            }, 400);
+          },
+          onoff1: function (a) {
+            $("#res").html("现在状态是：" + a);
+            !$res2[0].loaded && ($res2[0].loaded = true);
+            !$res3[0].loaded && ($res3[0].loaded = true);
+          }
+        }
+      };
+
+      $res.on("click", function () {
+        !$res2[0].loaded && ($res2[0].loaded = true);
+        !$res3[0].loaded && ($res3[0].loaded = true);
+        setTimeout(function () {
+          document.body.loaded = true;
+        }, 10000);
+      });
+      $("#load-btn").on("click", function () {
+        !$res3[0].loaded && ($res3[0].loaded = true);
+      });
+      $("#load-btn1").on("click", function () {
+        !$res2[0].loaded && ($res2[0].loaded = true);
+      });
+    </script>
+    <script></script>
+  </body>
+</html>

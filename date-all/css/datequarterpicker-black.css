@@ -1,0 +1,105 @@
+ul{
+  list-style: none;
+  padding-left: 0;
+}
+
+.quarterpicker{
+  cursor: pointer;
+  position: absolute;
+  font-size: 14px;
+  left: 45%;
+  width: 203px;
+}
+.quarterpicker>.quarter-header{
+  background-color: #3ac5a9;
+  color: #fff;
+  font-size: 0;
+  margin: 0;
+  position: relative;
+  text-align: center;
+}
+.quarterpicker .direct-btn{
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 100%;
+  font-size: 14px;
+  padding: 1px 10px;
+  vertical-align: middle;
+  outline: none;
+  position: absolute;
+}
+.direct-left{
+  left: 0;
+}
+.direct-right{
+  right: 0;
+}
+.quarterpicker .current-range{
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  padding: 10px;
+  vertical-align: middle;
+  width: 65%;
+}
+.current-range.yearToyear{
+  cursor: default;
+}
+.current-range:hover,.direct-btn:hover{
+  background-color: rgba(233,233,233,.4);
+}
+.quarter-body{
+  background-color: #34495e;
+  color: #fff;
+  padding: 5px;
+  position: relative;
+}
+.quarter-body>ul{
+  margin: 0;
+}
+.quarter-body li{
+  text-align: center;
+}
+.quarterpicker span {
+  display: inline-block;
+}
+.quarter-body span {
+  font-size: 14px;
+  width: 22.3333%;
+  height: 43px;
+  line-height: 43px;
+  margin: 0 5px;
+  text-align: center;
+  border-radius: 50%;
+}
+.quarter-body .valid:hover{
+  background-color: rgba(247, 247, 247, 0.16);
+}
+span.invalid {
+  color: #ccc;
+  cursor: default;
+}  
+.mid>span {
+  width: 23%;
+  margin: 0;
+}
+.quarter-quars>li {
+  float: left;
+  font-size: 18px;
+  padding: 20px 16px;
+  width: 50%;
+}
+.quarter-quars>li:hover {
+  background-color: rgba(247, 247, 247, 0.16);
+}
+.quarter-body span.active,.quarter-quars>li.active {
+  background-color: rgba(247, 247, 247, 0.16);
+}
+.datetimepicker,.daterangepicker,.quarterpicker{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

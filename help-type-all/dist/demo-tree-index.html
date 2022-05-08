@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="help-all-min.css" />
+    <style>
+      #show-res {
+        margin: 3rem auto;
+        text-align: center;
+        word-spacing: 5px;
+      }
+      .box {
+        margin: 2rem 0;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"> 
+      222<tree data-id="choose-a" data-placeholder='可多选' data-url='http://127.0.0.1:8888/?code=' data-which='group-scaffold' data-multiple='true' data-tags='true' data-onselected='selected' data-onunselected='unselected'></tree>
+      333<tree data-id="choose-b" data-placeholder='可多选' data-url='http://127.0.0.1:8888/?code=' data-which='test-group' data-multiple='true' data-tags='true' data-onselected='selected' data-onunselected='unselected'></tree>
+      000<tree data-id="choose-c" data-placeholder='单选' data-url='http://127.0.0.1:8888/?code=' data-which='u-g-h'></tree>
+    </div>	
+    <div class="box">
+      国家：<sel
+        data-id="province"
+        data-width="220"
+        data-placeholder="请选择"
+        data-change="true"
+        data-code="COUNTRY"
+      ></sel>
+      地域：<sel
+        data-id="province"
+        data-width="220"
+        data-placeholder="请选择"
+        data-change="true"
+        data-code="BANDAREA"
+      ></sel>
+      省：<sel
+        data-id="province"
+        data-width="220"
+        data-placeholder="请选择"
+        data-change="true"
+        data-code="PROVINCE"
+      ></sel>
+      市：<sel
+        data-id="sel"
+        data-width="220"
+        data-multiple="true"
+        data-placeholder="请选择"
+        data-max-item="3"
+        data-change="true"
+        data-code="CITY"
+      ></sel>
+    </div>
+
+    <div class="box" style="text-align: center">
+      地域 - 省份 - 城市级联：<areatree
+        data-type="area"
+        data-placeholder="请选择"
+      ></areatree>
+    </div>
+
+    <div id="show-res"></div>
+
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="help-all-min.js"></script>
+    <script>
+      $.treeViewer__ = {
+        selected: function (a, b) {
+          console.log(a);
+          var arr = [];
+          a.nodes &&
+            $.each(a.nodes, function (i, e) {
+              arr.push(e.text);
+            });
+          arr = (arr.length && arr) || a.text;
+          $("#show-res").append(" " + arr);
+        },
+        unselected: function (a, b) {
+          console.log(a);
+          $("#show-res").html("none");
+        }
+      };
+    </script>
+  </body>
+</html>

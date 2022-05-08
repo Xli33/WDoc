@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0"
+    />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="help-all-min.css" />
+
+    <style>
+      #con {
+        background-color: salmon;
+        padding: 1rem;
+        font-size: 2rem;
+      }
+      .testp {
+        background: indigo;
+        color: aliceblue;
+        font-size: 1.4rem;
+        padding: 10px;
+      }
+      div#grid {
+        margin-bottom: 50px;
+      }
+      .table {
+        table-layout: fixed;
+      }
+      .table > tbody > tr > td {
+        position: relative;
+      }
+      .select2-results__option {
+        padding: 0;
+      }
+      .cell {
+        display: inline-block;
+        padding: 6px 10px;
+        text-align: center;
+        vertical-align: middle;
+        width: 50%;
+      }
+      .cell:first-child {
+        border-right: 1px solid #ccc;
+      }
+      .tdh {
+        color: lightcyan;
+        margin: 0;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        -webkit-text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.35);
+        text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.35);
+      }
+      .detail-view {
+        background-color: #e8e8e8;
+        text-align: center;
+      }
+      .detail-view > td span {
+        margin: 1rem;
+      }
+      .select-win {
+      }
+      .box {
+        margin-top: 1rem;
+      }
+      .box > .select-win:nth-of-type(2) {
+        float: right;
+      }
+      .box2 {
+        position: relative;
+        top: 850px;
+      }
+      .box2 > .select-win:nth-of-type(2) {
+        float: right;
+      }
+      body {
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <sel
+      data-id="account"
+      data-width="220"
+      data-placeholder="请选择"
+      data-url="account.json"
+    ></sel>
+
+    <sel
+      data-id="province"
+      data-width="220"
+      data-placeholder="请选择"
+      data-url="province.json"
+    ></sel>
+
+    <sel
+      data-id="sel"
+      data-width="220"
+      data-multiple="true"
+      data-placeholder="请选择"
+      data-max-item="3"
+      data-url="bandarea.json"
+    ></sel>
+
+    <sel
+      data-id="sel2"
+      data-width="220"
+      data-multiple="true"
+      data-placeholder="请选择"
+      data-url="bandarea.json"
+    ></sel>
+
+    <div class="box">
+      <pop
+        data-placeholder="点我从右下ヾ(ﾟдﾟ)ﾉ  "
+        data-title=""
+        data-content="popHtml"
+        data-width=""
+      ></pop>
+      <pop
+        data-placeholder="点我从左下ヾ(ﾟдﾟ)ﾉ  "
+        data-title=""
+        data-content="popTable"
+        data-width=""
+      ></pop>
+    </div>
+
+    <div class="box2">
+      <pop
+        data-placeholder="点我从右上ヾ(ﾟдﾟ)ﾉ  "
+        data-title=""
+        data-content="popList"
+        data-width=""
+      ></pop>
+      <pop
+        data-placeholder="点我从左上ヾ(ﾟдﾟ)ﾉ  "
+        data-title=""
+        data-content="popHtml"
+        data-width=""
+      ></pop>
+    </div>
+
+    <datagrid
+      data-url="test.json"
+      data-fixed-columns=""
+      data-fixed-num=""
+      data-click-to-select="true"
+      data-height="400"
+      data-id="dg"
+      data-class="datagrid"
+      data-code="ACCOUNT"
+      data-pagination="1"
+      data-page-size="20"
+      data-side-pagination="client"
+      data-sortable="true"
+      data-on-load-success="btns"
+      data-click-row="expand"
+      data-click-cell="tCell"
+      data-detail-view=""
+      data-detail-formatter=""
+    ></datagrid>
+    <div class="toolbar"></div>
+
+    <div style="display: none">
+      <div class="bs-example" id="hoverable-table">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Username</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="example">
+        <div class="bs-example" data-example-id="contextual-panels">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">Panel content</div>
+          </div>
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">Panel content</div>
+          </div>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">Panel content</div>
+          </div>
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">Panel content</div>
+          </div>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title">Panel title</h3>
+            </div>
+            <div class="panel-body">Panel content</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="help-all-min.js"></script>
+    <script>
+      $.formatter__ = {
+        operateFormatter: function (value, row, index) {
+          // console.log(arguments);
+          return [
+            value,
+            '<button class="btn btn-info btn-sm rightSize detailBtn" type="button"><i class="fa fa-paste"></i> 详情</button>',
+            '<button class="btn btn-danger btn-sm rightSize packageBtn" type="button"><i class="fa fa-envelope"></i> 通知</button>',
+            "<h4>h4</h4>"
+          ].join("");
+        },
+        func: function (v, r, i) {
+          return [v, '<h2 class="tdh">Code</h2>'].join("");
+        },
+        btns: function (a) {
+          console.log("Congratulations & loaded seccessfully !!");
+          console.log(a);
+          $(".table .btn").on("click", function (e) {
+            e.stopPropagation();
+            return false;
+          });
+        },
+        expand: function () {
+          // console.log(arguments);
+        },
+        tCell: function () {
+          console.log(arguments);
+        },
+        detail: function (index, row, el) {
+          console.log(arguments);
+          var html = [];
+          $.each(row, function (i, e) {
+            html.push("<span>" + i + " ：" + e + "</span>");
+          });
+          return html.join("");
+        },
+        popHtml: function () {
+          return [
+            "<h1>this is an h1</h1><h2>this is an h2</h2><h3>this is an h3</h3><h4>this is an h4</h4>"
+          ].join("");
+        },
+        popTable: function () {
+          return $("#hoverable-table").html();
+        },
+        popList: function () {
+          return $("#example").html();
+        }
+      };
+    </script>
+  </body>
+</html>

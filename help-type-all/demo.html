@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/select2.css">
+	<link rel="stylesheet" type="text/css" href="css/select2-bs.css">
+	<link rel="stylesheet" type="text/css" href="universal.css">
+	<link rel="stylesheet" type="text/css" href="css/popalert.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-table.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-table-fixed-columns.css">
+	<link rel="stylesheet" type="text/css" href="css/pagination.css">	
+	
+	<style>
+		.select-win {
+  	  border: 1px solid #bbb;
+  	  cursor: pointer;
+  	  position: relative;
+  	  padding: 5px;
+  	  border-radius: 4px;
+  	  display: inline-block;
+		}
+		.select-win-value {
+		  margin-right: 20px;
+		}
+		.select-win>.select-win-arrow {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    height: 100%;
+	    width: 20px;
+	  }
+		.select-win-arrow>b {
+      border-color: #888 transparent transparent transparent;
+      border-style: solid;
+      border-width: 5px 4px 0 4px;
+      height: 0;
+      left: 50%;
+      margin-left: -4px;
+      margin-top: -2px;
+      position: absolute;
+      top: 50%;
+      width: 0;
+    }
+    .select-win-arrow>b.win-open{
+    	border-color: transparent transparent rgb(128, 128, 128) transparent;
+    	border-width: 0px 4px 5px 4px;
+    }
+    i.fa.fa-window-close-o {
+    	transition: color .2s cubic-bezier(0.24, 0.56, 1, 0.46);
+    }
+    i.fa.fa-window-close-o:hover{
+    	color: aliceblue;
+    }
+		#con{
+			background-color: salmon;
+			padding: 1rem;
+			font-size: 2rem;
+		}
+		.testp{
+			background: indigo;
+			color: aliceblue;
+			font-size: 1.4rem;
+			padding: 10px;
+		}
+		div#grid {
+		  margin-bottom: 50px;
+		}
+		.table{
+			table-layout: fixed;
+		}
+		.table>tbody>tr>td{
+			position: relative;
+		}
+		.select2-results__option{
+			padding: 0;
+		}
+		.cell{
+			display: inline-block;
+			padding: 6px 10px;
+			text-align: center;
+			vertical-align: middle;
+			width: 50%;
+		}
+		.cell:first-child{
+			border-right: 1px solid #ccc;			
+		}
+		.tdh{
+			color: lightcyan;
+			margin: 0;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			-webkit-text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.35);
+			text-shadow: 4px 4px 20px rgba(0, 0, 0, 0.35);
+		}
+		.detail-view{
+			background-color: #e8e8e8;
+			text-align: center;
+		}
+		.detail-view>td span{
+			margin: 1rem;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="form-group sort-width length_250">
+  	<div class="test">
+  	  <select class="select2_group form-control" name="account" id="account" tabindex="-2" style="display: none;">
+  	  </select>
+  	  <select class="select2_group form-control" name="province" id="province" tabindex="-2" style="display: none;">
+  	  </select>  	  
+  	</div>
+  </div>
+
+  <div class="form-group sort-width length_250">
+  	<div class="">
+			<p></p>
+  	</div>
+  </div>
+
+  <sel data-id="account" data-url='account.json' data-width="220"  data-placeholder='请选择'  data-change="true" data-code='ACCOUNT'></sel>
+  <sel data-id="province" data-width="220"  data-placeholder='请选择'  data-change="true" data-code='PROVINCE'></sel>
+  <sel data-id="sel" data-width="220" data-multiple="true" data-placeholder='请选择' data-max-item="3" data-change="true" data-code='PROVINCE'></sel>
+  <sel data-id="sel2" data-width="220" data-multiple="true" data-placeholder='请选择' data-change="true" data-code='BANDAREA'></sel>
+	<!-- <pop data-id='popout' data-url='account.json' data-width="220" data-multiple="true" data-placeholder='click'></pop> -->
+   <datagrid data-url='' data-fixed-columns='true' data-fixed-num='2' data-click-to-select='true' data-height='400' data-id='dg' data-class='datagrid' data-code='grid' data-pagination='1' data-page-size='20' data-side-pagination='client' data-sortable="true" data-on-load-success='btns' data-click-row='expand' data-click-cell='tCell' data-detail-view='' data-detail-formatter=''></datagrid> 
+
+	<div id="kk">kkkkkkk</div>
+
+	<div class="box">
+		
+	</div>
+  
+  <script src="jquery-3.3.1.min.js"></script>
+	<script src="js/select2.full.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+	<script src="js/bootstrap-table-zh-CN.js"></script>
+	<script src="js/bootstrap-table-fixed-columns.js"></script>
+	<script src="js/pagination.min.js"></script>
+	<script src="js/helpout.js"></script>
+	<script>
+		
+	
+	$.formatter__ = {
+		operateFormatter : function (value, row, index) {
+			// console.log(arguments);
+	     return [
+	     		value,
+	        '<button class="btn btn-info btn-sm rightSize detailBtn" type="button"><i class="fa fa-paste"></i> 详情</button>',
+	        '<button class="btn btn-danger btn-sm rightSize packageBtn" type="button"><i class="fa fa-envelope"></i> 通知</button>',
+	        '<h4>h4</h4>'
+	     ].join('');
+	 	},
+	 	func: function(v,r,i){
+	 		return [
+	 			v,
+	 			'<h2 class="tdh">Code</h2>',
+	 			].join('');
+	 	},
+	 	btns: function(a){
+	 		console.log('Congratulations & loaded seccessfully !!');
+	 		console.log(a);
+	 		$('.table .btn').on('click',function(e){
+	    	e.stopPropagation();
+	    	return false;
+	    });
+	 	},
+	 	expand: function(){
+	 		// console.log(arguments);
+	 	},
+	 	tCell: function(){
+	 		console.log(arguments);
+	 	},
+	 	detail: function(index,row,el){console.log(arguments);
+	 		var html = [];
+	 		$.each(row,function(i,e){
+	 			html.push('<span>' + i + ' ：' + e + '</span>');
+	 		});
+	 		return html.join('');
+	 	}
+	}
+	</script>
+</body>
+</html>

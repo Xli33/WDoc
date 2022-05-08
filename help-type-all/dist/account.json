@@ -1,0 +1,22 @@
+{
+    "message": "以获取到数据!",
+    "success": true,
+    "list": [
+        {
+            "descript": "111", 
+            "code": "1"
+        },
+        {
+            "descript": "222",
+            "code": "2"
+        },
+        {
+            "descript": "333",
+            "code": "3"
+        },
+        {
+            "descript": "666",
+            "code": "6"
+        }
+    ]
+}

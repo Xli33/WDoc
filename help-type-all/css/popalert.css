@@ -1,0 +1,158 @@
+.select2-results__option{
+  padding: 0;
+}
+.select2-container--default .select2-search--dropdown .select2-search__field:focus {
+  border: 1px solid #5897fb;
+  outline: none;
+  outline-offset: 0px;
+}
+.cell{
+  display: inline-block;
+  padding: 6px 10px;
+  text-align: center;
+  vertical-align: middle;
+  width: 50%;
+}
+.cell:first-child{
+  border-right: 1px solid #ccc;     
+}
+.select-win {
+  border: 1px solid #bbb;
+  cursor: pointer;
+  position: relative;
+  padding: 5px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.select-win-value {
+  margin-right: 20px;
+}
+.select-win>.select-win-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 20px;
+}
+.select-win-arrow>b {
+  border-color: #888 transparent transparent transparent;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;
+  height: 0;
+  left: 50%;
+  margin-left: -4px;
+  margin-top: -2px;
+  position: absolute;
+  top: 50%;
+  width: 0;
+}
+.select-win-arrow>b.win-open{
+  border-color: transparent transparent rgb(128, 128, 128) transparent;
+  border-width: 0px 4px 5px 4px;
+}
+i.fa.fa-window-close-o {
+  transition: color .2s cubic-bezier(0.24, 0.56, 1, 0.46);
+}
+i.fa.fa-window-close-o:hover{
+  color: aliceblue;
+}
+
+.fadeIn {
+  visibility: visible;
+  opacity: 1;
+}
+.fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  /* -webkit-transition: opacity 0.4s ease .3s;
+  -moz-transition: opacity 0.4s ease .3s;
+  -o-transition: opacity 0.4s ease .3s;
+  transition: opacity 0.4s ease .3s,visibility 0.4s ease .3s; */
+}
+.pop-window {
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  z-index: -233;
+}
+.pop-window.fadeIn{
+  visibility: visible;
+  z-index: 233;
+}
+.pop-window > .pop-container {
+  background-color: antiquewhite;
+  max-width: 320px;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.14), 0 1px 20px rgba(0, 0, 0, 0.12), 0 3px 20px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.14), 0 1px 20px rgba(0, 0, 0, 0.12), 0 3px 20px -2px rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale3d(0,0,0); 
+  transform: scale3d(0,0,0);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transition: transform 0.2s cubic-bezier(0.95, 1.88, 0, 0.98), opacity .2s ease;
+  transition: transform 0.2s cubic-bezier(0.95, 1.88, 0, 0.98), opacity .2s ease; 
+  opacity: 0;
+}
+.pop-window > .pop-container.pop-up {
+  -webkit-transform: scale3d(1,1,1);
+  transform: scale3d(1,1,1); 
+  opacity: 1;
+}
+.pop-window > .pop-container > .pop-header {
+  background-color: cornflowerblue;
+  font-size: 2rem;
+  position: relative; 
+  -webkit-box-shadow: 0 3px 2px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 3px 2px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.16);
+}
+.pop-window > .pop-container > .pop-header > .pop-window-title {
+  font-size: 1.4rem;
+  margin: 0;
+  margin-right: 2em;
+  /*padding: .5rem 1rem;*/
+}
+.pop-window > .pop-container > .pop-header > .fa {
+  font-size: .7em;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  margin-top: -0.4em;
+}
+.pop-window > .pop-container > .pop-content {
+  background-color: #fff;
+  /*padding: .5rem 1rem;*/
+  font-size: 15px;
+  max-height: 550px;
+  overflow: auto;
+  padding: 5px;
+  /*-ms-word-break: break-all;*/
+  word-break: break-all;
+}
+/* 
+.pop-window > .pop-container > .pop-content > iframe {
+  width: 1024px;
+  height: 768px;
+}
+.pop-window > .pop-container > .pop-footer {
+  padding: .5rem;
+}
+.pop-window > .pop-container > .pop-footer > button {
+  margin-left: 10px;
+  font-size: 1rem;
+  outline: none;
+  padding: 2px 12px;
+  border-color: cornflowerblue;
+  -webkit-transition: background 0.2s linear, color 0.2s linear;
+  -moz-transition: background 0.2s linear, color 0.2s linear;
+  -o-transition: background 0.2s linear, color 0.2s linear;
+  transition: background 0.2s linear, color 0.2s linear;
+}
+.pop-window > .pop-container > .pop-footer > button:hover {
+  background-color: cornflowerblue;
+}
+.pop-window > .pop-container > .pop-footer > button:hover:focus {
+  background-color: aliceblue;
+}
+.pop-window > .pop-container > .pop-footer > button:focus {
+  background-color: aliceblue;
+} */

@@ -1,0 +1,116 @@
+ul{
+  list-style: none;
+  padding-left: 0;
+}
+
+.quarterpicker{
+  border: 1px solid rgba(0, 0, 0, 0.15);  
+  position: absolute;
+  font-size: 14px;
+  left: 45%;
+  width: 245px;
+}
+.quarterpicker>.quarter-header{
+  background-color: #fff;
+  font-size: 0;
+  margin: 0;
+  padding-top: 4px;
+  position: relative;
+  text-align: center;
+}
+.quarterpicker .direct-btn{
+  border: none;
+  cursor: pointer;
+  height: 100%;
+  font-size: 14px;
+  padding: 1px 5px;
+  vertical-align: middle;
+  outline: none;
+  position: absolute;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.direct-left{
+  left: 4px;
+}
+.direct-right{
+  right: 4px;
+}
+.quarterpicker .current-range{
+  cursor: pointer;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  padding: 6px;
+  vertical-align: middle;
+  width: 65%;
+}
+.current-range.yearToyear{
+  cursor: default;
+}
+.current-range:hover,.direct-btn:hover{
+  background-color: #eee;
+}
+.quarter-body{
+  background-color: #fff;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+  position: relative;
+}
+.quarter-body>ul{
+  margin: 0;
+}
+.quarter-body li{
+  color: #000;
+  text-align: center;
+}
+.quarterpicker span {
+  display: inline-block;
+}
+.quarter-body span {
+  font-size: 14px;
+  width: 22.3333%;
+  height: 43px;
+  line-height: 43px;
+  margin: 0 5px;
+  text-align: center;
+  border-radius: 4px;
+}
+.quarter-body .valid:hover{
+  background-color: #eee;
+}
+span.invalid {
+  color: #ccc;
+  cursor: default;
+}  
+.mid>span {
+  width: 23%;
+  margin: 0;
+}
+.quarter-quars>li {
+  float: left;
+  font-size: 17px;
+  padding: 20px 16px;
+  width: 50%;
+  border-radius: 4px;
+}
+.quarter-quars>li:hover {
+  background-color: #eee;
+}
+.quarter-body span.active,.quarter-quars>li.active {
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -ms-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  color: #fff;
+}
+.datetimepicker,.daterangepicker,.quarterpicker{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
